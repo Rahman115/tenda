@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style/style_pekerjaan.css">
+</head>
+<body>
+  <header>Dashboard</header>
+
+  <nav>
+    <a href="/test_index.html">Dashboard</a>
+    <a href="/users.html">Users</a>
+    <a href="pekerjaan.html">Pekerjaan</a>
+    <a href="#">Harga</a>
+  </nav>
+
+  <div class="container">
+    <div class="cards">
+      <div class="card">
+        <h2 id="totalUsers">0</h2>
+        <p>Total Users</p>
+      </div>
+    </div>
+    <div class="card">
+      <div id="user-list"></div>
+    </div>
+      
+    
+  </div>
+<footer>© 2025 Sistem Tenda</footer>
+  
+  <script>
+    // Ambil total user
+    fetch("users.php")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("totalUsers").textContent = data.length;
+      });
+    
+// list Users
+function loadUser(){
+fetch("users.php")
+.then(res => res.json())
+.then(data => {
+  let container = document.getElementById("user-list");
+  container.innerHTML = "";
+  data.forEach(job => {
+    let card = document.createElement("div");
+    card.className = "";
+    card.innerHTML = `
+  <div class="user-card">
+    <img src="https://i.pravatar.cc/100?u=${job.id*10^2}" alt="${job.username}" class="avatar">
+    <div class="info">
+      <h3>${job.nama_lengkap}</h3>
+      <p>Email: ${job.email ?? "-"}</p>
+      <p>Role: ${job.role ?? "User"}</p>
+    </div>
+  </div>
+`;
+    container.appendChild(card);
+    
+  });
+})
+.catch(err => console.error(err));
+}
+
+loadUser();
+  </script>
+  </body>
+</html>

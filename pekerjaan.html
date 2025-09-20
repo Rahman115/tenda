@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manajemen Pekerjaan</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+ <header>Daftar Pekerjaan</header>
+
+  <nav>
+    <a href="/test_index.html">Dashboard</a>
+    <a href="users.html">Users</a>
+    <a href="pekerjaan.html">Pekerjaan</a>
+    <a href="#">Harga</a>
+  </nav>
+  <div class="container">
+   <div class="cards" >
+     <div id="detail"></div>
+   </div>
+    <div class="cards">
+      <div id="job-list"></div>
+    </div>
+    
+    
+  </div>
+<footer>© 2025 Sistem Tenda</footer>
+  <script>
+    function loadJobs() {
+      fetch("pekerjaan.php")
+        .then(res => res.json())
+        .then(data => {
+          let container = document.getElementById("job-list");
+          container.innerHTML = "";
+          data.forEach(job => {
+            let card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+              <h3>${job.lokasi}</h3>
+              <p><b>Jumlah Orang:</b> ${job.jumlah_orang}</p>
+              <p><b>Status:</b> ${job.status === 'ps' ? 'Pasang' : 'Bongkar'}</p>
+              <p><b>Tanggal:</b> ${job.tanggal}</p>
+              <p><b>Pembayaran:</b> ${job.status_pembayaran === 'yes' ? 'Sudah' : 'Belum'}</p>
+            `;
+            card.onclick = () => showDetail(job.id);
+            container.appendChild(card);
+          });
+        });
+    }
+
+    function showDetail(id) {
+      fetch("jobs.php?id=" + id)
+        .then(res => res.json())
+        .then(job => {
+          let detail = document.getElementById("detail");
+          let workersList = job.pekerja.map(w => `<li>${w.username} </li>`).join("");
+          detail.style.display = "block";
+          detail.innerHTML = `
+            <h2>${job.lokasi}</h2>
+            <p><b>Jumlah Orang:</b> ${job.jumlah_orang}</p>
+            <p><b>Jumlah Lokal:</b> ${job.jumlah_lokal}</p>
+            <p><b>Status:</b> ${job.status === 'ps' ? 'Pasang' : 'Bongkar'}</p>
+            <p><b>Tanggal:</b> ${job.tanggal}</p>
+            <p><b>Pembayaran:</b> ${job.status_pembayaran === 'yes' ? 'Sudah' : 'Belum'}</p>
+            <p><b>Dibuat:</b> ${job.created_at}</p>
+            <p><b>Diupdate:</b> ${job.updated_at}</p>
+<h3>Pekerja:</h3>
+      <ul>${workersList || '<li>Belum ada pekerja</li>'}</ul>
+            <button class="back" onclick="hideDetail()">← Kembali</button>
+            <button class="edit" onclick="editJob(${job.id})">✏️ Edit</button>
+            <button class="delete" onclick="deleteJob(${job.id})">🗑️ Hapus</button>
+          `;
+        });
+    }
+
+    function hideDetail() {
+      document.getElementById("detail").style.display = "none";
+    }
+
+    function editJob(id) {
+      let newLokasi = prompt("Masukkan lokasi baru:");
+      if(newLokasi) {
+        fetch("update_api.php", {
+          method:"POST",
+          headers: {"Content-Type":"application/x-www-form-urlencoded"},
+          body: "id="+id+"&lokasi="+encodeURIComponent(newLokasi)
+        })
+        .then(res=>res.text())
+        .then(msg=>{
+          alert(msg);
+          loadJobs();
+          hideDetail();
+        });
+      }
+    }
+
+    function deleteJob(id) {
+      if(confirm("Yakin hapus pekerjaan ini?")) {
+        fetch("hapus_api.php", {
+          method:"POST",
+          headers: {"Content-Type":"application/x-www-form-urlencoded"},
+          body: "id="+id
+        })
+        .then(res=>res.text())
+        .then(msg=>{
+          alert(msg);
+          loadJobs();
+          hideDetail();
+        });
+      }
+    }
+
+    loadJobs();
+  </script>
+</body>
+</html>
