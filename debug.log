@@ -1,0 +1,375 @@
+=== 2025-09-24 12:54:20 ===
+POST: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [jumlah_orang] => 3
+    [tanggal] => 2025-09-18
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jumlah_orang] => 3
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [tanggal] => 2025-09-18
+)
+
+=== 2025-09-24 12:59:03 ===
+POST: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [jumlah_orang] => 3
+    [tanggal] => 2025-09-18
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jumlah_orang] => 3
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [tanggal] => 2025-09-18
+)
+
+=== 2025-09-24 13:12:33 ===
+POST: Array
+(
+    [id_kerjaan] => undefined
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [jumlah_orang] => 3
+    [tanggal] => 2025-09-18
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => undefined
+    [jumlah_orang] => 3
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [tanggal] => 2025-09-18
+)
+
+=== 2025-09-24 13:15:23 ===
+POST: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [jumlah_orang] => 3
+    [tanggal] => 2025-09-18
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jumlah_orang] => 3
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [tanggal] => 2025-09-18
+)
+
+=== 2025-09-24 13:16:43 ===
+POST: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [jumlah_orang] => 3
+    [tanggal] => 2025-09-18
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jumlah_orang] => 3
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [tanggal] => 2025-09-18
+)
+
+=== 2025-09-24 13:18:21 ===
+POST: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [jumlah_orang] => 3
+    [tanggal] => 2025-09-18
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jumlah_orang] => 3
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [tanggal] => 2025-09-18
+)
+
+=== 2025-09-24 13:18:50 ===
+POST: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [jumlah_orang] => 3
+    [tanggal] => 2025-09-18
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jumlah_orang] => 3
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [tanggal] => 2025-09-18
+)
+
+=== 2025-09-24 13:20:55 ===
+POST: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [jumlah_orang] => 3
+    [tanggal] => 2025-09-18
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jumlah_orang] => 3
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [tanggal] => 2025-09-18
+)
+
+=== 2025-09-24 13:23:35 ===
+POST: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => bkr
+    [jumlah_orang] => 3
+    [tanggal] => 2025-09-21
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 24eb0385-9781-11f0-b5ce-239da9796382
+    [jumlah_orang] => 3
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => bkr
+    [tanggal] => 2025-09-21
+)
+
+=== 2025-09-24 13:25:47 ===
+POST: Array
+(
+    [id_kerjaan] => 24eafebd-9781-11f0-b5ce-239da9796382
+    [jenis] => tenda
+    [jumlah_unit] => 2
+    [status] => ps
+    [jumlah_orang] => 4
+    [tanggal] => 2025-09-18
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 24eafebd-9781-11f0-b5ce-239da9796382
+    [jumlah_orang] => 4
+    [jenis] => tenda
+    [jumlah_unit] => 2
+    [status] => ps
+    [tanggal] => 2025-09-18
+)
+
+=== 2025-09-24 13:26:32 ===
+POST: Array
+(
+    [id_kerjaan] => 24eafebd-9781-11f0-b5ce-239da9796382
+    [jenis] => tenda
+    [jumlah_unit] => 2
+    [status] => bkr
+    [jumlah_orang] => 5
+    [tanggal] => 2025-09-20
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 24eafebd-9781-11f0-b5ce-239da9796382
+    [jumlah_orang] => 5
+    [jenis] => tenda
+    [jumlah_unit] => 2
+    [status] => bkr
+    [tanggal] => 2025-09-20
+)
+
+=== 2025-09-24 13:41:10 ===
+POST: Array
+(
+    [id_kerjaan] => 24ead4f0-9781-11f0-b5ce-239da9796382
+    [jenis] => tenda
+    [jumlah_unit] => 2
+    [status] => ps
+    [jumlah_orang] => 4
+    [tanggal] => 2025-09-15
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 24ead4f0-9781-11f0-b5ce-239da9796382
+    [jumlah_orang] => 4
+    [jenis] => tenda
+    [jumlah_unit] => 2
+    [status] => ps
+    [tanggal] => 2025-09-15
+)
+
+=== 2025-09-24 13:41:57 ===
+POST: Array
+(
+    [id_kerjaan] => 24ead4f0-9781-11f0-b5ce-239da9796382
+    [jenis] => tenda
+    [jumlah_unit] => 2
+    [status] => bkr
+    [jumlah_orang] => 5
+    [tanggal] => 2025-09-18
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 24ead4f0-9781-11f0-b5ce-239da9796382
+    [jumlah_orang] => 5
+    [jenis] => tenda
+    [jumlah_unit] => 2
+    [status] => bkr
+    [tanggal] => 2025-09-18
+)
+
+=== 2025-09-24 13:43:04 ===
+POST: Array
+(
+    [id_kerjaan] => fda5e44f-977e-11f0-b5ce-239da9796382
+    [jenis] => tenda
+    [jumlah_unit] => 2
+    [status] => bkr
+    [jumlah_orang] => 5
+    [tanggal] => 2025-09-19
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => fda5e44f-977e-11f0-b5ce-239da9796382
+    [jumlah_orang] => 5
+    [jenis] => tenda
+    [jumlah_unit] => 2
+    [status] => bkr
+    [tanggal] => 2025-09-19
+)
+
+=== 2025-09-24 13:44:13 ===
+POST: Array
+(
+    [id_kerjaan] => fda5e44f-977e-11f0-b5ce-239da9796382
+    [jenis] => tenda
+    [jumlah_unit] => 2
+    [status] => ps
+    [jumlah_orang] => 4
+    [tanggal] => 2025-09-12
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => fda5e44f-977e-11f0-b5ce-239da9796382
+    [jumlah_orang] => 4
+    [jenis] => tenda
+    [jumlah_unit] => 2
+    [status] => ps
+    [tanggal] => 2025-09-12
+)
+
