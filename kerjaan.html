@@ -202,7 +202,8 @@
         <h2>Detail Pesanan</h2>
         <p>Pilih pekerjaan untuk melihat detail pesanan</p>
         <div id="order-list"></div>
-        <button onclick="showAddOrderModal()" style="margin-top: 20px;">+ Tambah Pesanan</button>
+        <button onclick="showAddOrderModal()" style="margin-top: 20px;">+ Pesanan</button>
+        <button onclick="showAddJobsModal()" style="margin-top: 20px;">+ Pekerjaan</button>
       </div>
     </div>
     
@@ -211,6 +212,78 @@
       <div id="job-list"></div>
     </div>
   </div>
+  <!-- Modal untuk Tambah Pekerja -->
+<div id="addWorksModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Tambah Pekerja</h3>
+      <span class="close" onclick="closeAddWorksModal()">&times;</span>
+    </div>
+    <form id="addWorksForm">
+      <div class="form-group">
+        <label for="kerjaan_uuid">UUID Pekerjaan:</label>
+        <div class="uuid-display" id="kerjaan_uuid_display"></div>
+        <input type="hidden" id="kerjaan_uuid" name="kerjaan_uuid">
+      </div>
+      
+      <div class="form-group">
+        <label for="user_id">Pilih Pekerja:</label>
+        <select id="user_id" name="user_id" required>
+          <option value="">Pilih Pekerja</option>
+          <!-- Options akan diisi via JavaScript -->
+        </select>
+      </div>
+      
+      <button type="submit" class="btn-success">Tambah Pekerja</button>
+      <button type="button" onclick="closeAddWorksModal()">Batal</button>
+    </form>
+    
+    <!-- Daftar Pekerja yang Sudah Ditambahkan -->
+    <div id="workers-list" style="margin-top: 20px;">
+      <h4>Daftar Pekerja</h4>
+      <div id="workers-container"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal untuk Tambah Pekerjaan -->
+<div id="addJobsModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Tambah Pekerjaan Baru</h3>
+      <span class="close" onclick="closeAddJobsModal()">&times;</span>
+    </div>
+    <form id="addJobsForm">
+      <div class="form-group">
+        <label for="pengguna">Nama Pengguna:</label>
+        <input type="text" id="pengguna" name="pengguna" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="lokasi">Lokasi:</label>
+        <input type="text" id="lokasi" name="lokasi" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="status_pembayaran">Status Pembayaran:</label>
+        <select id="status_pembayaran" name="status_pembayaran" required>
+          <option value="">Pilih Status</option>
+          <option value="no">Belum Bayar</option>
+          <option value="yes">Sudah Bayar</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="tanggal">Tanggal:</label>
+        <input type="date" id="tanggal_job" name="tanggal" required>
+      </div>
+      
+      <button type="submit" class="btn-success">Simpan</button>
+      <button type="button" onclick="closeAddJobsModal()">Batal</button>
+    </form>
+  </div>
+</div>
 
   <!-- Modal untuk Tambah Pesanan -->
   <div id="addOrderModal" class="modal">
@@ -268,6 +341,7 @@
   <script>
     let selectedJobUuid = null;
     let selectedJobId = null;
+    let selectedOrderUuid = null;
     
     function loadJobs() {
       fetch("kerjaan.php")
@@ -278,14 +352,18 @@
           data.forEach(job => {
             let card = document.createElement("div");
             card.className = "card";
-            card.innerHTML = `
-              <h3>${job.pengguna}</h3>
-              <p><b>Lokasi:</b> ${job.lokasi}</p>
-              <p><b>Status:</b> ${job.status_pembayaran === 'no' ? 'Belum' : 'Sudah'}</p>
-              <p><b>Tanggal:</b> ${job.tanggal}</p>
-              <p class="uuid-display"><b>UUID:</b> ${job.uuid}</p>
-              <button onclick="selectJob('${job.uuid}', ${job.id}, '${job.pengguna}')">Pilih</button>
-            `;
+            // Dalam function loadJobs(), update bagian card.innerHTML:
+card.innerHTML = `
+    <h3>${job.pengguna}</h3>
+    <p><b>Lokasi:</b> ${job.lokasi}</p>
+    <p><b>Status:</b> ${job.status_pembayaran === 'no' ? 'Belum' : 'Sudah'}</p>
+    <p><b>Tanggal:</b> ${job.tanggal}</p>
+    <p class="uuid-display"><b>UUID:</b> ${job.uuid}</p>
+    <button onclick="selectJob('${job.uuid}', ${job.id}, '${job.pengguna}')">Pilih</button>
+    <button onclick="editJob('${job.uuid}')">Edit</button>
+    <button class="btn-danger" onclick="deleteJob('${job.uuid}')">Hapus</button>
+`;
+            
             container.appendChild(card);
           });
         })
@@ -293,6 +371,16 @@
           console.error('Error loading jobs:', error);
           document.getElementById("job-list").innerHTML = "<p>Error loading data</p>";
         });
+    }
+    
+    function closeDetail(){
+      document.getElementById('detail').innerHTML = `
+       <h2>Detail Pesanan</h2>
+        <p>Pilih pekerjaan untuk melihat detail pesanan</p>
+        <div id="order-list"></div>
+        <button onclick="showAddOrderModal()" style="margin-top: 20px;">+ Pesanan</button>
+        <button onclick="showAddJobsModal()" style="margin-top: 20px;">+ Pekerjaan</button>
+      `;
     }
     
     function selectJob(jobUuid, jobId, pengguna) {
@@ -305,6 +393,8 @@
         <div id="order-list"></div>
         <button onclick="showAddOrderModal()" style="margin-top: 20px;">+ Tambah Pesanan</button>
         <button onclick="loadOrders('${jobUuid}')" style="margin-top: 20px;">Refresh Pesanan</button>
+        <button onclick="closeDetail()" style="margin-top: 20px;">Tutup</button>
+        
       `;
       loadOrders(jobUuid);
     }
@@ -330,7 +420,8 @@
               <p><strong>Jumlah Unit:</strong> ${order.jumlah_unit}</p>
               <p><strong>Status:</strong> ${order.status === 'ps' ? 'Pasang' : 'Bongkar'} <i> ( ${order.jumlah_orang} Org )</i></p>
               <p><strong>Dibuat:</strong> ${order.tanggal}</p>
-              <button class="btn-success" onclick="addOrang('${order.uuid}')">Add</button>
+              
+               <button class="btn-success" onclick="showAddWorksModal('${order.uuid}')">Add</button>
               <button onclick="editOrder('${order.uuid}')">Edit</button>
               <button class="btn-danger" onclick="deleteOrder('${order.uuid}')">Hapus</button>
               
@@ -423,6 +514,11 @@
 });
     
     
+    function addOrder(orderUUID) {
+      alert ('Fitur add untuk UUID : ' + orderUUID);
+    }
+    
+    
     function editOrder(orderUuid) {
       // Implementasi edit order berdasarkan UUID
       alert('Fitur edit untuk UUID: ' + orderUuid);
@@ -449,6 +545,245 @@
       }
     }
     
+        // Fungsi unk modal pekerjaan
+    function showAddJobsModal() {
+      document.getElementById('addJobsModal').style.display = 'flex';
+    }
+    function closeAddJobsModal() {
+      document.getElementById('addJobsModal').style.display = 'none';
+    }
+    
+    // Fungsi unk modal pekerjaan
+    function showAddWorksModal() {
+      document.getElementById('addWorksModal').style.display = 'flex';
+    }
+    function closeAddWorksModal() {
+      document.getElementById('addWorksModal').style.display = 'none';
+    }
+    
+    // Fungsi untuk modal pekerjaan
+function showAddWorksModal(orderUuid = null) {
+    selectedOrderUuid = orderUuid;
+    
+    if (!selectedJobUuid) {
+        alert('Pilih pekerjaan terlebih dahulu!');
+        return;
+    }
+    
+    // Set UUID pekerjaan
+    document.getElementById('kerjaan_uuid_display').textContent = selectedOrderUuid;
+    document.getElementById('kerjaan_uuid').value = selectedOrderUuid;
+    
+    // Load daftar user yang tersedia
+    loadAvailableUsers();
+    
+    // Load daftar pekerja yang sudah ditambahkan
+    loadWorkers();
+    
+    console.log(selectedOrderUuid);
+    
+    document.getElementById('addWorksModal').style.display = 'flex';
+}
+
+function closeAddWorksModal() {
+    document.getElementById('addWorksModal').style.display = 'none';
+    document.getElementById('addWorksForm').reset();
+    selectedOrderUuid = null;
+}
+// Load daftar user yang tersedia
+async function loadAvailableUsers() {
+    try {
+        const response = await fetch('users.php');
+        const data = await response.json();
+       // console.log(data.success);
+        const userSelect = document.getElementById('user_id');
+        userSelect.innerHTML = '<option value="">Pilih Pekerja</option>';
+        
+        if (data) {
+          
+            data.forEach(user => {
+                const option = document.createElement('option');
+                option.value = user.id;
+                option.textContent = `${user.nama_lengkap} (${user.username})`;
+                userSelect.appendChild(option);
+                
+            });
+          //  console.log('data.users');
+        }
+    } catch (error) {
+        console.error('Error loading users:', error);
+    }
+}
+
+// Load daftar pekerja yang sudah ditambahkan
+async function loadWorkers() {
+    if (!selectedJobUuid) return;
+    
+    try {
+        const response = await fetch(`php/workers_get.php?kerjaan_uuid=${selectedJobUuid}`);
+        const data = await response.json();
+        
+        const workersContainer = document.getElementById('workers-container');
+        workersContainer.innerHTML = '';
+        
+        if (data.success && data.workers.length > 0) {
+            data.workers.forEach(worker => {
+                const workerDiv = document.createElement('div');
+                workerDiv.className = 'card';
+                workerDiv.innerHTML = `
+                    <p><strong>Nama:</strong> ${worker.nama_lengkap}</p>
+                    <p><strong>Username:</strong> ${worker.username}</p>
+                    <p><strong>Role:</strong> ${worker.role}</p>
+                    <p><strong>Ditambahkan:</strong> ${worker.created_at}</p>
+                    <button class="btn-danger" onclick="deleteWorker('${worker.uuid}')">Hapus</button>
+                `;
+                workersContainer.appendChild(workerDiv);
+            });
+        } else {
+            workersContainer.innerHTML = '<p>Belum ada pekerja yang ditambahkan</p>';
+        }
+    } catch (error) {
+        console.error('Error loading workers:', error);
+    }
+}
+
+// Event listener untuk form tambah pekerja
+document.getElementById('addWorksForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    if (!selectedJobUuid) {
+        alert('Pilih pekerjaan terlebih dahulu!');
+        return;
+    }
+    
+    const formData = new FormData(this);
+    
+    try {
+        const response = await fetch('php/worker_save.php', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            alert('Pekerja berhasil ditambahkan!');
+            document.getElementById('addWorksForm').reset();
+            loadWorkers(); // Reload daftar pekerja
+            loadAvailableUsers(); // Reload daftar user yang tersedia
+        } else {
+            alert('Error: ' + data.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error menambahkan pekerja');
+    }
+});
+
+// Fungsi hapus pekerja
+async function deleteWorker(workerUuid) {
+    if (!confirm('Apakah Anda yakin ingin menghapus pekerja ini?')) {
+        return;
+    }
+    
+    try {
+        const response = await fetch(`php/delete_worker.php?uuid=${workerUuid}`, {
+            method: 'DELETE'
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            alert('Pekerja berhasil dihapus!');
+            loadWorkers();
+        } else {
+            alert('Error: ' + data.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error menghapus pekerja');
+    }
+}
+
+// Event listener untuk form tambah pekerjaan
+document.getElementById('addJobsForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = {
+        pengguna: document.getElementById('pengguna').value,
+        lokasi: document.getElementById('lokasi').value,
+        status_pembayaran: document.getElementById('status_pembayaran').value,
+        tanggal: document.getElementById('tanggal_job').value
+    };
+    
+    try {
+      // Kirim request
+        console.log('📤 Sending request...');
+        const response = await fetch('php/job_save.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+        
+        const data = await response.json();
+        // Baca response sebagai text dulu
+       // const rawResponse = await response.text();
+        console.log('📥 Raw response:', data);
+        
+        
+        if (data.success) {
+            alert('Pekerjaan berhasil ditambahkan!');
+            closeAddJobsModal();
+            loadJobs(); // Reload daftar pekerjaan
+        } else {
+            alert('Error: ' + data.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error menambahkan pekerjaan');
+    }
+});
+
+// Fungsi edit pekerjaan
+function editJob(jobUuid) {
+    // Implementasi edit - bisa menggunakan modal yang sama dengan tambah
+    const jobCard = event.target.closest('.card');
+    const pengguna = jobCard.querySelector('h3').textContent;
+    const lokasi = jobCard.querySelector('p:nth-child(2)').textContent.replace('Lokasi: ', '');
+    
+    document.getElementById('pengguna').value = pengguna;
+    document.getElementById('lokasi').value = lokasi;
+    document.getElementById('status_pembayaran').value = status_pembayaran;
+    document.getElementById('tanggal_job').value = tanggal;
+    // Isi field lainnya sesuai kebutuhan
+    
+    showAddJobsModal();
+}
+
+// Fungsi delete pekerjaan
+function deleteJob(jobUuid) {
+    if (confirm('Apakah Anda yakin ingin menghapus pekerjaan ini? Semua pesanan terkait juga akan dihapus.')) {
+        fetch(`php/job_delete.php?uuid=${jobUuid}`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log('📥 Raw response:', data);
+            if (data.success) {
+                loadJobs();
+                alert('Pekerjaan berhasil dihapus!');
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error menghapus pekerjaan');
+        });
+    }
+}
     // Load jobs ketika halaman dimuat
     loadJobs();
   </script>

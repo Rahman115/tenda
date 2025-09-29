@@ -17,11 +17,7 @@ try {
         throw new Exception('Database connection failed: ' . $conn->connect_error);
     }
 
-    // Validasi input
-    if (empty($_POST['id_kerjaan'])) {
-        throw new Exception('ID Kerjaan is required');
-    }
-
+    
     $id_kerjaan = $conn->real_escape_string($_POST['id_kerjaan']);
     $jumlah_orang = isset($_POST['jumlah_orang']) ? (int)$_POST['jumlah_orang'] : 0;
     $jenis = isset($_POST['jenis']) ? $conn->real_escape_string($_POST['jenis']) : '';
