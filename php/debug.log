@@ -1,30 +1,16 @@
-=== 2025-09-28 12:47:42 ===
-Input: 
-Error: JSON invalid
-=== 2025-09-28 12:47:55 ===
-Input: 
-Error: JSON invalid
-=== 2025-09-28 12:50:07 ===
-Input: 
-Error: JSON invalid
-=== 2025-09-29 13:27:32 ===
-POST: Array
-(
-)
-
-GET: Array
-(
-)
-
-=== 2025-09-29 13:35:47 ===
-POST: Array
-(
-)
-
-GET: Array
-(
-)
-
-=== 2025-09-29 13:57:05 ===
-Input: 
-Error: JSON invalid
+kerjaan_id: tenda
+kerjaan_id: tenda
+kerjaan_id: tenda
+kerjaan_id: tenda
+kerjaan: SELECT SUM(d.jumlah_unit) as total_jumlah_unit
+FROM kerjaan AS k 
+LEFT JOIN detail_kerjaan AS d 
+    ON k.uuid = d.id_kerjaan 
+    AND d.jenis = 'tenda' 
+    AND d.status = 'ps'
+kerjaan: SELECT SUM(d.jumlah_unit) as total_jumlah_unit
+FROM kerjaan AS k 
+LEFT JOIN detail_kerjaan AS d 
+    ON k.uuid = d.id_kerjaan 
+    AND d.jenis = 'tenda' 
+    AND d.status = 'ps'

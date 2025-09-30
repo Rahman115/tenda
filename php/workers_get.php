@@ -17,7 +17,7 @@ try {
             WHERE k.uuid = ? 
             ORDER BY p.created_at DESC";
     
-    $stmt = $pdo->prepare($sql);
+    $stmt = $conn->prepare($sql);
     $stmt->execute([$kerjaan_uuid]);
     $workers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
