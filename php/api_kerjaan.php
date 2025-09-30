@@ -13,13 +13,13 @@ $jenis = $_GET['jenis'];
 // Log values
 // file_put_contents('debug.log', "kerjaan_id: $jenis\n", FILE_APPEND);
 
-  $sql = "SELECT *
-FROM kerjaan AS k LEFT JOIN detail_kerjaan AS d 
-    ON k.uuid = d.id_kerjaan 
-    AND d.jenis = '$jenis' 
-    AND d.status = 'ps'";
-    
-
+  $sql = "SELECT k.pengguna, k.lokasi, d.tanggal, d.jumlah_unit 
+          FROM kerjaan AS k 
+          INNER JOIN detail_kerjaan AS d 
+          ON k.uuid = d.id_kerjaan 
+          WHERE d.jenis = '$jenis' 
+          AND d.status = 'ps'
+          AND d.jumlah_unit IS NOT NULL;";
     
 // Log values
 // file_put_contents('debug.log', "kerjaan: $sql\n", FILE_APPEND);

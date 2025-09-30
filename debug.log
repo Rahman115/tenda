@@ -148,3 +148,53 @@ Processed data: Array
     [tanggal] => 2025-09-28
 )
 
+=== 2025-09-30 06:57:08 ===
+POST: Array
+(
+    [id_kerjaan] => e58c3898-9dc9-11f0-91db-4e8fe5cb4b15
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [jumlah_orang] => 5
+    [tanggal] => 2025-09-25
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => e58c3898-9dc9-11f0-91db-4e8fe5cb4b15
+    [jumlah_orang] => 5
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => ps
+    [tanggal] => 2025-09-25
+)
+
+=== 2025-09-30 06:57:47 ===
+POST: Array
+(
+    [id_kerjaan] => e58c3898-9dc9-11f0-91db-4e8fe5cb4b15
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => bkr
+    [jumlah_orang] => 4
+    [tanggal] => 2025-09-29
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => e58c3898-9dc9-11f0-91db-4e8fe5cb4b15
+    [jumlah_orang] => 4
+    [jenis] => tenda
+    [jumlah_unit] => 1
+    [status] => bkr
+    [tanggal] => 2025-09-29
+)
+

@@ -12,7 +12,7 @@ $jenis = $_GET['kerjaan_jenis'];
 // Log values
 // file_put_contents('debug.log', "kerjaan_id: $jenis\n", FILE_APPEND);
 
-  $sql = "SELECT SUM(d.jumlah_unit) as total_jumlah_unit
+  $sql = "SELECT CONVERT(SUM(d.jumlah_unit), SIGNED) as total_jumlah_unit
 FROM kerjaan AS k 
 LEFT JOIN detail_kerjaan AS d 
     ON k.uuid = d.id_kerjaan 

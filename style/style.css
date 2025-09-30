@@ -25,6 +25,11 @@
       background:#0077cc; 
       color:#fff;
     }
+    
+    nav .active {
+      background:#0077cc; 
+      color:#fff;
+    }
 
     .container {
       max-width:1000px; margin:auto; padding:20px;

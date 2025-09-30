@@ -47,6 +47,10 @@
       background: #777;
     }
     
+     nav .active {
+      background: #777;
+    }
+    
     .container {
       display: flex;
       flex-wrap: wrap;
@@ -192,7 +196,7 @@
   <nav>
     <a href="dashboard.html">Dashboard</a>
     <a href="users.html">Users</a>
-    <a href="kerjaan.html">Kerjaan</a>
+    <a href="kerjaan.html" class="active">Kerjaan</a>
     <a href="pekerjaan.html">Pekerjaan</a>
   </nav>
   
@@ -617,26 +621,25 @@ async function loadAvailableUsers() {
 
 // Load daftar pekerja yang sudah ditambahkan
 async function loadWorkers() {
-    if (!selectedJobUuid) return;
+    if (!selectedOrderUuid) return;
     
     try {
-        const response = await fetch(`php/workers_get.php?kerjaan_uuid=${selectedJobUuid}`);
+        const response = await fetch(`php/workers_get.php?kerjaan_uuid=${selectedOrderUuid}`);
+        // console.log(response.url);
         const data = await response.json();
-        
+        console.log(data);
         const workersContainer = document.getElementById('workers-container');
         workersContainer.innerHTML = '';
         
-        if (data.success && data.workers.length > 0) {
+        if (data.success) {
             data.workers.forEach(worker => {
                 const workerDiv = document.createElement('div');
                 workerDiv.className = 'card';
                 workerDiv.innerHTML = `
-                    <p><strong>Nama:</strong> ${worker.nama_lengkap}</p>
-                    <p><strong>Username:</strong> ${worker.username}</p>
-                    <p><strong>Role:</strong> ${worker.role}</p>
-                    <p><strong>Ditambahkan:</strong> ${worker.created_at}</p>
-                    <button class="btn-danger" onclick="deleteWorker('${worker.uuid}')">Hapus</button>
+                    <p><strong>---:</strong> ${worker.nama_lengkap}</p>
+                   
                 `;
+                //  <button class="btn-danger" onclick="deleteWorker('${worker.uuid}')">Hapus</button>
                 workersContainer.appendChild(workerDiv);
             });
         } else {
@@ -647,21 +650,27 @@ async function loadWorkers() {
     }
 }
 
-// Event listener untuk form tambah pekerja
 document.getElementById('addWorksForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    if (!selectedJobUuid) {
-        alert('Pilih pekerjaan terlebih dahulu!');
-        return;
-    }
-    
     const formData = new FormData(this);
+    const jsonData = {};
+    
+    // Convert FormData to JSON
+    formData.forEach((value, key) => {
+        jsonData[key] = value;
+    });
+    
+    console.log('Data to send:', jsonData);
     
     try {
-        const response = await fetch('php/worker_save.php', {
+        const response = await fetch('php/pekerja_save.php', { 
+          // Pastikan path benar
             method: 'POST',
-            body: formData
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(jsonData)
         });
         
         const data = await response.json();
