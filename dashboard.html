@@ -122,6 +122,18 @@
     .view-all-btn:hover {
       background-color: #3a5ce5;
     }
+    
+    .loading {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+    }
+    
+    .error {
+      text-align: center;
+      padding: 20px;
+      color: #e74c3c;
+    }
   </style>
 </head>
 <body>
@@ -176,35 +188,40 @@
   <footer>© 2025 Sistem Tenda</footer>
 
   <script>
-    // Data dummy untuk simulasi
-    const dummyData = {
-      pekerjaan: [
-        { id: 1, nama: "Pemasangan Tenda Pernikahan", status: "Selesai", tanggal: "2025-03-15" },
-        { id: 2, nama: "Pemasangan Panggung Acara", status: "Dalam Proses", tanggal: "2025-03-20" },
-        { id: 3, nama: "Pemasangan Gapura", status: "Menunggu", tanggal: "2025-03-25" }
-      ],
-      users: [
-        { id: 1, nama: "Ahmad", email: "ahmad@example.com", role: "Admin" },
-        { id: 2, nama: "Budi", email: "budi@example.com", role: "User" },
-        { id: 3, nama: "Citra", email: "citra@example.com", role: "User" }
-      ],
-      tenda: [
-        { id: 1, nama: "Tenda Besar", lokasi: "Jl. Merdeka No. 10", jumlah: 2 },
-        { id: 2, nama: "Tenda Kecil", lokasi: "Jl. Sudirman No. 5", jumlah: 5 },
-        { id: 3, nama: "Tenda Medium", lokasi: "Jl. Gatot Subroto No. 15", jumlah: 3 }
-      ],
-      panggung: [
-        { id: 1, nama: "Panggung Utama", lokasi: "Jl. Merdeka No. 10", ukuran: "4x6m" },
-        { id: 2, nama: "Panggung Kecil", lokasi: "Jl. Sudirman No. 5", ukuran: "3x4m" }
-      ],
-      gapura: [
-        { id: 1, nama: "Gapura Selamat Datang", lokasi: "Jl. Merdeka No. 10", jenis: "Bunga" },
-        { id: 2, nama: "Gapura Acara", lokasi: "Jl. Sudirman No. 5", jenis: "Balon" }
-      ]
+    // Konfigurasi API endpoints
+    const API_ENDPOINTS = {
+      pekerjaan: "pekerjaan.php",
+      users: "users.php",
+      tenda: "php/length_orders.php?kerjaan_jenis=tenda",
+      panggung: "php/length_orders.php?kerjaan_jenis=panggung",
+      gapura: "php/length_orders.php?kerjaan_jenis=gapura",
+      detailPekerjaan: "php/api_pekerjaan.php?action=list",
+      detailUsers: "php/api_users.php?action=list",
+      detailTenda: "php/api_kerjaan.php?action=list&jenis=tenda",
+      detailPanggung: "php/api_kerjaan.php?action=list&jenis=panggung",
+      detailGapura: "php/api_kerjaan.php?action=list&jenis=gapura"
     };
 
+    // Cache untuk menyimpan data yang sudah diambil
+    const dataCache = {};
+
+    // Fungsi untuk mengambil data dari API
+    async function fetchData(endpoint) {
+      try {
+        const response = await fetch(endpoint);
+        // console.log(response);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+      }
+    }
+
     // Fungsi untuk menampilkan modal detail
-    function showDetailModal(type) {
+    async function showDetailModal(type) {
       const modal = document.getElementById('detailModal');
       const modalTitle = document.getElementById('modalTitle');
       const modalBody = document.getElementById('modalBody');
@@ -220,41 +237,103 @@
       };
       
       modalTitle.textContent = titles[type] || "Detail";
+      // console.log(type);
+      // console.log(titles[type]);
+      // Tampilkan loading
+      modalBody.innerHTML = '<div class="loading">Memuat data...</div>';
+      modal.style.display = "flex";
       
-      // Isi konten modal berdasarkan tipe
-      let content = '';
-      const data = dummyData[type] || [];
-      
-      if (data.length === 0) {
-        content = '<p>Tidak ada data untuk ditampilkan.</p>';
-      } else {
-        // Tampilkan maksimal 5 item
-        const itemsToShow = data.slice(0, 5);
-        
-        itemsToShow.forEach(item => {
-          content += `
-            <div class="list-item">
-              <div>
-                <strong>${item.nama || item.email || 'N/A'}</strong>
-                ${item.status ? `<br><span>Status: ${item.status}</span>` : ''}
-                ${item.lokasi ? `<br><span>Lokasi: ${item.lokasi}</span>` : ''}
-                ${item.tanggal ? `<br><span>Tanggal: ${item.tanggal}</span>` : ''}
-              </div>
-              <div>
-                ${item.jumlah ? `<span>${item.jumlah} unit</span>` : ''}
-                ${item.role ? `<span>${item.role}</span>` : ''}
-              </div>
-            </div>
-          `;
-        });
-        
-        // Jika ada lebih dari 5 item, tampilkan info
-        if (data.length > 5) {
-          content += `<p style="text-align: center; margin-top: 10px;">... dan ${data.length - 5} item lainnya</p>`;
+      try {
+        // Cek cache dulu
+        let data;
+        const cacheKey = `detail_${type}`;
+        console.log(cacheKey);
+        console.log(dataCache[cacheKey]);
+        if (dataCache[cacheKey]) {
+          console.log('Saya disini if ');
+          data = dataCache[cacheKey];
+          console.log(data);
+        } else {
+          // Ambil data dari API
+          console.log('Saya disini else ');
+          const endpoint = API_ENDPOINTS[`detail${type.charAt(0).toUpperCase() + type.slice(1)}`] || API_ENDPOINTS.detailPekerjaan;
+          console.log(endpoint);
+          data = await fetchData(endpoint);
+          console.log('Ambil data : ' + data);
+          // Simpan ke cache
+          console.log(endpoint);
+          dataCache[cacheKey] = data;
         }
+        
+        // Isi konten modal dengan data dari API
+        let content = '';
+        console.log(data);
+        if (!data || data.length === 0) {
+          content = '<div class="error">Tidak ada data untuk ditampilkan.</div>';
+        } else {
+          // Tampilkan maksimal 5 item
+          const itemsToShow = data.slice(0, 5);
+          
+          itemsToShow.forEach(item => {
+            // Format data berdasarkan tipe
+            console.log('Type : ' + type);
+            console.log(item);
+            
+            if (type === 'pekerjaan') {
+              content += `
+                <div class="list-item">
+                  <div>
+                    <strong>${item.pengguna || 'N/A'}</strong>
+                    ${item.status ? `<br><span>Status: ${item.status}</span>` : ''}
+                    ${item.tanggal_mulai ? `<br><span>Tanggal: ${item.tanggal_mulai}</span>` : ''}
+                  </div>
+                  <div>
+                    ${item.lokasi ? `<span>${item.lokasi}</span>` : ''}
+                  </div>
+                </div>
+              `;
+            } else if (type === 'users') {
+              content += `
+                <div class="list-item">
+                  <div>
+                    <strong>${item.nama || item.username || 'N/A'}</strong>
+                    ${item.email ? `<br><span>Email: ${item.email}</span>` : ''}
+                  </div>
+                  <div>
+                    ${item.role ? `<span>${item.role}</span>` : ''}
+                  </div>
+                </div>
+              `;
+            } else {
+              // Untuk tenda, panggung, gapura
+              content += `
+                <div class="list-item">
+                  <div>
+                    <strong>${item.pengguna || item.nama || 'N/A'}</strong>
+                    ${item.lokasi ? `<br><span>Lokasi: ${item.lokasi}</span>` : ''}
+                    ${item.tanggal ? `<br><span>Tanggal: ${item.tanggal}</span>` : ''}
+                  </div>
+                  <div>
+                    ${item.jumlah_unit ? `<span>${item.jumlah_unit} unit</span>` : ''}
+                    ${item.status ? `<span>${item.status}</span>` : ''}
+                  </div>
+                </div>
+              `;
+            }
+          });
+          
+          // Jika ada lebih dari 5 item, tampilkan info
+          if (data.length > 5) {
+            content += `<p style="text-align: center; margin-top: 10px;">... dan ${data.length - 5} item lainnya</p>`;
+          }
+        }
+        
+        modalBody.innerHTML = content;
+        
+      } catch (error) {
+        modalBody.innerHTML = '<div class="error">Gagal memuat data. Silakan coba lagi.</div>';
+        console.error('Error loading detail data:', error);
       }
-      
-      modalBody.innerHTML = content;
       
       // Set URL untuk tombol "Lihat Semua"
       const urls = {
@@ -268,9 +347,6 @@
       viewAllBtn.onclick = function() {
         window.location.href = urls[type] || "#";
       };
-      
-      // Tampilkan modal
-      modal.style.display = "flex";
     }
 
     // Event listener untuk menutup modal
@@ -294,40 +370,39 @@
       });
     });
 
-    // Ambil total pekerjaan
-    fetch("pekerjaan.php")
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("totalPekerjaan").textContent = data.length;
-      });
+    // Fungsi untuk memuat data statistik dashboard
+    async function loadDashboardStats() {
+      try {
+        // Load total pekerjaan
+        const pekerjaanData = await fetchData(API_ENDPOINTS.pekerjaan);
+        document.getElementById("totalPekerjaan").textContent = pekerjaanData.length || 0;
 
-    // Ambil total tenda
-    fetch("php/length_orders.php?kerjaan_jenis=tenda")
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("totalTenda").textContent = data[0].total_jumlah_unit;
-      });
+        // Load total users
+        const usersData = await fetchData(API_ENDPOINTS.users);
+        document.getElementById("totalUsers").textContent = usersData.length || 0;
 
-    // Ambil total panggung
-    fetch("php/length_orders.php?kerjaan_jenis=panggung")
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("totalPanggung").textContent = data[0].total_jumlah_unit;
-      });
-      
-    // Ambil total gapura
-    fetch("php/length_orders.php?kerjaan_jenis=gapura")
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("totalGapura").textContent = data[0].total_jumlah_unit;
-      });
+        // Load total tenda
+        const tendaData = await fetchData(API_ENDPOINTS.tenda);
+        document.getElementById("totalTenda").textContent = tendaData[0]?.total_jumlah_unit || 0;
 
-    // Ambil total user
-    fetch("users.php")
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("totalUsers").textContent = data.length;
-      });
+        // Load total panggung
+        const panggungData = await fetchData(API_ENDPOINTS.panggung);
+        document.getElementById("totalPanggung").textContent = panggungData[0]?.total_jumlah_unit || 0;
+
+        // Load total gapura
+        const gapuraData = await fetchData(API_ENDPOINTS.gapura);
+        document.getElementById("totalGapura").textContent = gapuraData[0]?.total_jumlah_unit || 0;
+
+      } catch (error) {
+        console.error('Error loading dashboard stats:', error);
+        // Tetap tampilkan 0 jika ada error
+      }
+    }
+
+    // Muat data statistik saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', function() {
+      loadDashboardStats();
+    });
   </script>
 </body>
 </html>

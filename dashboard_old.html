@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style/style.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <script>
+    // Inisialisasi Eruda
+    eruda.init();
+    console.log('Eruda initialized');
+  </script>
+  
+  <style>
+    /* Styling tambahan untuk kard statistik yang dapat diklik */
+    .card {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .card:active {
+      transform: translateY(0);
+    }
+    
+    .card::after {
+      content: "Klik untuk detail";
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 0.7rem;
+      color: #666;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .card:hover::after {
+      opacity: 1;
+    }
+    
+    /* Styling untuk modal detail */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+    
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #666;
+    }
+    
+    .modal-close:hover {
+      color: #333;
+    }
+    
+    .list-item {
+      padding: 10px;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .list-item:last-child {
+      border-bottom: none;
+    }
+    
+    .list-item:hover {
+      background-color: #f9f9f9;
+    }
+    
+    .view-all-btn {
+      display: block;
+      margin: 15px auto 0;
+      padding: 8px 15px;
+      background-color: #4a6cf7;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    
+    .view-all-btn:hover {
+      background-color: #3a5ce5;
+    }
+  </style>
+</head>
+<body>
+  <header>Dashboard</header>
+
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="users.html">Users</a>
+    <a href="kerjaan.html">Kerjaan</a>
+    <a href="pekerjaan.html">Pekerjaan</a>
+  </nav>
+
+  <div class="container">
+    <div class="cards">
+      <div class="card" id="cardPekerjaan" data-type="pekerjaan">
+        <h2 id="totalPekerjaan">0</h2>
+        <p>Total Pekerjaan</p>
+      </div>
+      <div class="card" id="cardUsers" data-type="users">
+        <h2 id="totalUsers">0</h2>
+        <p>Total Users</p>
+      </div>
+      <div class="card" id="cardTenda" data-type="tenda">
+        <h2 id="totalTenda">0</h2>
+        <p>Total Tenda Terpasang</p>
+      </div>
+      <div class="card" id="cardPanggung" data-type="panggung">
+        <h2 id="totalPanggung">0</h2>
+        <p>Total Panggung Terpasang</p>
+      </div>
+      <div class="card" id="cardGapura" data-type="gapura">
+        <h2 id="totalGapura">0</h2>
+        <p>Total Gapura Terpasang</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal untuk menampilkan detail -->
+  <div id="detailModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Detail</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div id="modalBody">
+        <!-- Konten detail akan dimuat di sini -->
+      </div>
+      <button id="viewAllBtn" class="view-all-btn">Lihat Semua</button>
+    </div>
+  </div>
+
+  <footer>© 2025 Sistem Tenda</footer>
+
+  <script>
+    // Data dummy untuk simulasi
+    const dummyData = {
+      pekerjaan: [
+        { id: 1, nama: "Pemasangan Tenda Pernikahan", status: "Selesai", tanggal: "2025-03-15" },
+        { id: 2, nama: "Pemasangan Panggung Acara", status: "Dalam Proses", tanggal: "2025-03-20" },
+        { id: 3, nama: "Pemasangan Gapura", status: "Menunggu", tanggal: "2025-03-25" }
+      ],
+      users: [
+        { id: 1, nama: "Ahmad", email: "ahmad@example.com", role: "Admin" },
+        { id: 2, nama: "Budi", email: "budi@example.com", role: "User" },
+        { id: 3, nama: "Citra", email: "citra@example.com", role: "User" }
+      ],
+      tenda: [
+        { id: 1, nama: "Tenda Besar", lokasi: "Jl. Merdeka No. 10", jumlah: 2 },
+        { id: 2, nama: "Tenda Kecil", lokasi: "Jl. Sudirman No. 5", jumlah: 5 },
+        { id: 3, nama: "Tenda Medium", lokasi: "Jl. Gatot Subroto No. 15", jumlah: 3 }
+      ],
+      panggung: [
+        { id: 1, nama: "Panggung Utama", lokasi: "Jl. Merdeka No. 10", ukuran: "4x6m" },
+        { id: 2, nama: "Panggung Kecil", lokasi: "Jl. Sudirman No. 5", ukuran: "3x4m" }
+      ],
+      gapura: [
+        { id: 1, nama: "Gapura Selamat Datang", lokasi: "Jl. Merdeka No. 10", jenis: "Bunga" },
+        { id: 2, nama: "Gapura Acara", lokasi: "Jl. Sudirman No. 5", jenis: "Balon" }
+      ]
+    };
+
+    // Fungsi untuk menampilkan modal detail
+    function showDetailModal(type) {
+      const modal = document.getElementById('detailModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalBody = document.getElementById('modalBody');
+      const viewAllBtn = document.getElementById('viewAllBtn');
+      
+      // Set judul modal berdasarkan tipe
+      const titles = {
+        pekerjaan: "Detail Pekerjaan",
+        users: "Detail Users",
+        tenda: "Detail Tenda Terpasang",
+        panggung: "Detail Panggung Terpasang",
+        gapura: "Detail Gapura Terpasang"
+      };
+      
+      modalTitle.textContent = titles[type] || "Detail";
+      
+      // Isi konten modal berdasarkan tipe
+      let content = '';
+      const data = dummyData[type] || [];
+      
+      if (data.length === 0) {
+        content = '<p>Tidak ada data untuk ditampilkan.</p>';
+      } else {
+        // Tampilkan maksimal 5 item
+        const itemsToShow = data.slice(0, 5);
+        
+        itemsToShow.forEach(item => {
+          content += `
+            <div class="list-item">
+              <div>
+                <strong>${item.nama || item.email || 'N/A'}</strong>
+                ${item.status ? `<br><span>Status: ${item.status}</span>` : ''}
+                ${item.lokasi ? `<br><span>Lokasi: ${item.lokasi}</span>` : ''}
+                ${item.tanggal ? `<br><span>Tanggal: ${item.tanggal}</span>` : ''}
+              </div>
+              <div>
+                ${item.jumlah ? `<span>${item.jumlah} unit</span>` : ''}
+                ${item.role ? `<span>${item.role}</span>` : ''}
+              </div>
+            </div>
+          `;
+        });
+        
+        // Jika ada lebih dari 5 item, tampilkan info
+        if (data.length > 5) {
+          content += `<p style="text-align: center; margin-top: 10px;">... dan ${data.length - 5} item lainnya</p>`;
+        }
+      }
+      
+      modalBody.innerHTML = content;
+      
+      // Set URL untuk tombol "Lihat Semua"
+      const urls = {
+        pekerjaan: "pekerjaan.html",
+        users: "users.html",
+        tenda: "kerjaan.html?filter=tenda",
+        panggung: "kerjaan.html?filter=panggung",
+        gapura: "kerjaan.html?filter=gapura"
+      };
+      
+      viewAllBtn.onclick = function() {
+        window.location.href = urls[type] || "#";
+      };
+      
+      // Tampilkan modal
+      modal.style.display = "flex";
+    }
+
+    // Event listener untuk menutup modal
+    document.querySelector('.modal-close').addEventListener('click', function() {
+      document.getElementById('detailModal').style.display = "none";
+    });
+
+    // Event listener untuk menutup modal saat klik di luar konten
+    window.addEventListener('click', function(event) {
+      const modal = document.getElementById('detailModal');
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    // Event listener untuk setiap card
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', function() {
+        const type = this.getAttribute('data-type');
+        showDetailModal(type);
+      });
+    });
+
+    // Ambil total pekerjaan
+    fetch("pekerjaan.php")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("totalPekerjaan").textContent = data.length;
+      });
+
+    // Ambil total tenda
+    fetch("php/length_orders.php?kerjaan_jenis=tenda")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("totalTenda").textContent = data[0].total_jumlah_unit;
+      });
+
+    // Ambil total panggung
+    fetch("php/length_orders.php?kerjaan_jenis=panggung")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("totalPanggung").textContent = data[0].total_jumlah_unit;
+      });
+      
+    // Ambil total gapura
+    fetch("php/length_orders.php?kerjaan_jenis=gapura")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("totalGapura").textContent = data[0].total_jumlah_unit;
+      });
+
+    // Ambil total user
+    fetch("users.php")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("totalUsers").textContent = data.length;
+      });
+  </script>
+</body>
+</html>
