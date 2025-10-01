@@ -1,496 +1,382 @@
-=== 2025-09-30 06:12:01 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = 'e930463e-9d2d-11f0-8219-8f13b2443d65'
-kerjaan_id found: 18
-=== 2025-09-30 06:15:17 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = 'e930463e-9d2d-11f0-8219-8f13b2443d65'
-kerjaan_id found: 18
-=== 2025-09-30 06:15:37 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = 'e930463e-9d2d-11f0-8219-8f13b2443d65'
-kerjaan_id found: 18
-=== 2025-09-30 06:15:53 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = 'e930463e-9d2d-11f0-8219-8f13b2443d65'
-kerjaan_id found: 18
-=== 2025-09-30 06:16:00 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = 'e930463e-9d2d-11f0-8219-8f13b2443d65'
-kerjaan_id found: 18
-=== 2025-09-30 06:16:15 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = 'e930463e-9d2d-11f0-8219-8f13b2443d65'
-kerjaan_id found: 18
-=== 2025-09-30 06:19:05 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = 'e930463e-9d2d-11f0-8219-8f13b2443d65'
-kerjaan_id found: 18
-=== 2025-09-30 06:20:18 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = 'e930463e-9d2d-11f0-8219-8f13b2443d65'
-kerjaan_id found: 18
-=== 2025-09-30 06:20:31 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = 'e930463e-9d2d-11f0-8219-8f13b2443d65'
-kerjaan_id found: 18
-=== 2025-09-30 06:27:06 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = 'e930463e-9d2d-11f0-8219-8f13b2443d65'
-kerjaan_id found: 18
-=== 2025-09-30 06:27:14 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = 'e930463e-9d2d-11f0-8219-8f13b2443d65'
-kerjaan_id found: 18
-=== 2025-09-30 06:27:32 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = '10003348-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:27:42 ===
+=== 2025-09-30 17:36:11 ===
+POST: Array
+(
+    [id_kerjaan] => 
+    [jenis] => tenda
+    [jumlah_unit] => 2.00
+    [status] => bkr
+    [jumlah_orang] => 5
+    [tanggal] => 2025-09-29
+    [uuid] => b2805854-9d2e-11f0-8219-8f13b2443d65
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 
+    [jumlah_orang] => 5
+    [jenis] => tenda
+    [jumlah_unit] => 2.00
+    [status] => bkr
+    [tanggal] => 2025-09-29
+)
+
+=== 2025-09-30 17:39:10 ===
+POST: Array
+(
+    [id_kerjaan] => 5af0e30f-9b78-11f0-8bcf-3d449d4688d7
+    [jenis] => tenda
+    [jumlah_unit] => 2.00
+    [status] => bkr
+    [jumlah_orang] => 5
+    [tanggal] => 2025-09-29
+    [uuid] => b2805854-9d2e-11f0-8219-8f13b2443d65
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 5af0e30f-9b78-11f0-8bcf-3d449d4688d7
+    [jumlah_orang] => 5
+    [jenis] => tenda
+    [jumlah_unit] => 2.00
+    [status] => bkr
+    [tanggal] => 2025-09-29
+)
+
+=== 2025-09-30 17:39:28 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 22
+=== 2025-09-30 17:39:38 ===
 Input: Array
 (
-    [kerjaan_uuid] => 1d9d8cfd-9d2f-11f0-8219-8f13b2443d65
+    [kerjaan_uuid] => b2805854-9d2e-11f0-8219-8f13b2443d65
     [user_id] => 2
 )
 
-kerjaan_uuid: 1d9d8cfd-9d2f-11f0-8219-8f13b2443d65, user_id: 2
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '1d9d8cfd-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 24
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '24' AND user_id = '2'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('8a72c05d-948c-4b4c-96e2-11002b5df466', '24', '2')
+kerjaan_uuid: b2805854-9d2e-11f0-8219-8f13b2443d65, user_id: 2
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 22
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '22' AND user_id = '2'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('9392f449-2d3d-41ad-919d-5e7153c9e203', '22', '2')
 Success: Data inserted
-=== 2025-09-30 06:27:44 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = '10003348-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:31:54 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 
-=== 2025-09-30 06:32:01 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = '56585a34-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 
-=== 2025-09-30 06:32:06 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = '1d9d8cfd-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 
-=== 2025-09-30 06:32:22 ===
-Check SQL: SELECT id FROM kerjaan WHERE uuid = '1d9d8cfd-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 
-=== 2025-09-30 06:33:15 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '1d9d8cfd-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 24
-=== 2025-09-30 06:33:35 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:33:39 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '56585a34-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 20
-=== 2025-09-30 06:33:42 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '1d9d8cfd-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 24
-=== 2025-09-30 06:36:07 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:37:04 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:37:42 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:38:15 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:38:35 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:39:07 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:41:17 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:41:47 ===
+=== 2025-09-30 17:39:39 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 22
+=== 2025-09-30 17:39:45 ===
 Input: Array
 (
-    [kerjaan_uuid] => 4b2ef33e-9d2e-11f0-8219-8f13b2443d65
+    [kerjaan_uuid] => b2805854-9d2e-11f0-8219-8f13b2443d65
+    [user_id] => 3
+)
+
+kerjaan_uuid: b2805854-9d2e-11f0-8219-8f13b2443d65, user_id: 3
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 22
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '22' AND user_id = '3'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('5102d506-65a6-4de7-8d42-bbe9380525d9', '22', '3')
+Success: Data inserted
+=== 2025-09-30 17:39:46 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 22
+=== 2025-09-30 17:39:54 ===
+Input: Array
+(
+    [kerjaan_uuid] => b2805854-9d2e-11f0-8219-8f13b2443d65
+    [user_id] => 4
+)
+
+kerjaan_uuid: b2805854-9d2e-11f0-8219-8f13b2443d65, user_id: 4
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 22
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '22' AND user_id = '4'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('c909b556-69c7-46d5-a551-c62431509006', '22', '4')
+Success: Data inserted
+=== 2025-09-30 17:39:54 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 22
+=== 2025-09-30 17:40:00 ===
+Input: Array
+(
+    [kerjaan_uuid] => b2805854-9d2e-11f0-8219-8f13b2443d65
+    [user_id] => 7
+)
+
+kerjaan_uuid: b2805854-9d2e-11f0-8219-8f13b2443d65, user_id: 7
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 22
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '22' AND user_id = '7'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('3016ce9f-6dbe-49e0-972e-8479cfc84c88', '22', '7')
+Success: Data inserted
+=== 2025-09-30 17:40:01 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 22
+=== 2025-09-30 17:40:04 ===
+Input: Array
+(
+    [kerjaan_uuid] => b2805854-9d2e-11f0-8219-8f13b2443d65
+    [user_id] => 8
+)
+
+kerjaan_uuid: b2805854-9d2e-11f0-8219-8f13b2443d65, user_id: 8
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 22
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '22' AND user_id = '8'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('9272110d-ad7b-496c-bdcc-a37f28e3fa19', '22', '8')
+Success: Data inserted
+=== 2025-09-30 17:40:05 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 22
+=== 2025-09-30 17:41:37 ===
+POST: Array
+(
+    [id_kerjaan] => 5af0e30f-9b78-11f0-8bcf-3d449d4688d7
+    [jenis] => gapura
+    [jumlah_unit] => 2
+    [status] => bkr
+    [jumlah_orang] => 5
+    [tanggal] => 2025-09-28
+    [uuid] => c4add2b3-9d2e-11f0-8219-8f13b2443d65
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 5af0e30f-9b78-11f0-8bcf-3d449d4688d7
+    [jumlah_orang] => 5
+    [jenis] => gapura
+    [jumlah_unit] => 2
+    [status] => bkr
+    [tanggal] => 2025-09-28
+)
+
+=== 2025-09-30 17:41:57 ===
+POST: Array
+(
+    [id_kerjaan] => 5af0e30f-9b78-11f0-8bcf-3d449d4688d7
+    [jenis] => gapura
+    [jumlah_unit] => 1
+    [status] => bkr
+    [jumlah_orang] => 5
+    [tanggal] => 2025-09-28
+    [uuid] => c4add2b3-9d2e-11f0-8219-8f13b2443d65
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 5af0e30f-9b78-11f0-8bcf-3d449d4688d7
+    [jumlah_orang] => 5
+    [jenis] => gapura
+    [jumlah_unit] => 1
+    [status] => bkr
+    [tanggal] => 2025-09-28
+)
+
+=== 2025-09-30 17:42:08 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 23
+=== 2025-09-30 17:42:14 ===
+Input: Array
+(
+    [kerjaan_uuid] => c4add2b3-9d2e-11f0-8219-8f13b2443d65
     [user_id] => 2
 )
 
-kerjaan_uuid: 4b2ef33e-9d2e-11f0-8219-8f13b2443d65, user_id: 2
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '19' AND user_id = '2'
-Error: User sudah terdaftar
-=== 2025-09-30 06:41:54 ===
-Input: Array
-(
-    [kerjaan_uuid] => 4b2ef33e-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 4
-)
-
-kerjaan_uuid: 4b2ef33e-9d2e-11f0-8219-8f13b2443d65, user_id: 4
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '19' AND user_id = '4'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('58b9fa41-7bc3-4d05-8741-3ef4f9cc6913', '19', '4')
+kerjaan_uuid: c4add2b3-9d2e-11f0-8219-8f13b2443d65, user_id: 2
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 23
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '23' AND user_id = '2'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('77b4bfe1-5d47-441e-8211-72271d1d9ee9', '23', '2')
 Success: Data inserted
-=== 2025-09-30 06:41:56 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:42:00 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:42:13 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:42:41 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:45:34 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:46:16 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:46:37 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '56585a34-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 20
-=== 2025-09-30 06:48:34 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:48:49 ===
+=== 2025-09-30 17:42:15 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 23
+=== 2025-09-30 17:42:21 ===
 Input: Array
 (
-    [kerjaan_uuid] => 4b2ef33e-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 7
-)
-
-kerjaan_uuid: 4b2ef33e-9d2e-11f0-8219-8f13b2443d65, user_id: 7
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '19' AND user_id = '7'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('e099662d-732e-4f8c-b0ad-9e43d730ae5e', '19', '7')
-Success: Data inserted
-=== 2025-09-30 06:48:50 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:48:54 ===
-Input: Array
-(
-    [kerjaan_uuid] => 4b2ef33e-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 8
-)
-
-kerjaan_uuid: 4b2ef33e-9d2e-11f0-8219-8f13b2443d65, user_id: 8
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '19' AND user_id = '8'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('860202ad-e8c4-4030-b54a-017a3cdd529f', '19', '8')
-Success: Data inserted
-=== 2025-09-30 06:48:55 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:49:11 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '56585a34-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 20
-=== 2025-09-30 06:49:54 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:51:07 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 19
-=== 2025-09-30 06:51:23 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '56585a34-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 20
-=== 2025-09-30 06:51:28 ===
-Input: Array
-(
-    [kerjaan_uuid] => 56585a34-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 8
-)
-
-kerjaan_uuid: 56585a34-9d2e-11f0-8219-8f13b2443d65, user_id: 8
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '56585a34-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 20
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '20' AND user_id = '8'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('867b3f0d-9265-419c-afba-1a5039b6e415', '20', '8')
-Success: Data inserted
-=== 2025-09-30 06:51:29 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '56585a34-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 20
-=== 2025-09-30 06:51:32 ===
-Input: Array
-(
-    [kerjaan_uuid] => 56585a34-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 7
-)
-
-kerjaan_uuid: 56585a34-9d2e-11f0-8219-8f13b2443d65, user_id: 7
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '56585a34-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 20
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '20' AND user_id = '7'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('c8c26b50-1973-4d20-8a8d-f404f4acc6b6', '20', '7')
-Success: Data inserted
-=== 2025-09-30 06:51:33 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '56585a34-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 20
-=== 2025-09-30 06:51:38 ===
-Input: Array
-(
-    [kerjaan_uuid] => 56585a34-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 4
-)
-
-kerjaan_uuid: 56585a34-9d2e-11f0-8219-8f13b2443d65, user_id: 4
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '56585a34-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 20
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '20' AND user_id = '4'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('f64a3d74-780c-44ae-a1c2-aa96a3366b19', '20', '4')
-Success: Data inserted
-=== 2025-09-30 06:51:38 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '56585a34-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 20
-=== 2025-09-30 06:51:47 ===
-Input: Array
-(
-    [kerjaan_uuid] => 56585a34-9d2e-11f0-8219-8f13b2443d65
+    [kerjaan_uuid] => c4add2b3-9d2e-11f0-8219-8f13b2443d65
     [user_id] => 3
 )
 
-kerjaan_uuid: 56585a34-9d2e-11f0-8219-8f13b2443d65, user_id: 3
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '56585a34-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 20
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '20' AND user_id = '3'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('d64aba0a-8558-4c81-84c1-260a8fa4fdb5', '20', '3')
+kerjaan_uuid: c4add2b3-9d2e-11f0-8219-8f13b2443d65, user_id: 3
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 23
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '23' AND user_id = '3'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('2c75ed9b-6a47-448d-9be7-27841c3cf2f6', '23', '3')
 Success: Data inserted
-=== 2025-09-30 06:51:47 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '56585a34-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 20
-=== 2025-09-30 06:52:12 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '1d9d8cfd-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 24
-=== 2025-09-30 06:52:17 ===
+=== 2025-09-30 17:42:22 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 23
+=== 2025-09-30 17:42:26 ===
 Input: Array
 (
-    [kerjaan_uuid] => 1d9d8cfd-9d2f-11f0-8219-8f13b2443d65
-    [user_id] => 3
-)
-
-kerjaan_uuid: 1d9d8cfd-9d2f-11f0-8219-8f13b2443d65, user_id: 3
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '1d9d8cfd-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 24
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '24' AND user_id = '3'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('d95b6457-9017-48f3-aab3-ac7fc6c4f870', '24', '3')
-Success: Data inserted
-=== 2025-09-30 06:52:18 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '1d9d8cfd-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 24
-=== 2025-09-30 06:52:23 ===
-Input: Array
-(
-    [kerjaan_uuid] => 1d9d8cfd-9d2f-11f0-8219-8f13b2443d65
+    [kerjaan_uuid] => c4add2b3-9d2e-11f0-8219-8f13b2443d65
     [user_id] => 4
 )
 
-kerjaan_uuid: 1d9d8cfd-9d2f-11f0-8219-8f13b2443d65, user_id: 4
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '1d9d8cfd-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 24
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '24' AND user_id = '4'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('ad66d22a-b5e9-420b-a888-573fb38dd09c', '24', '4')
+kerjaan_uuid: c4add2b3-9d2e-11f0-8219-8f13b2443d65, user_id: 4
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 23
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '23' AND user_id = '4'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('da685ca5-0217-4ba3-9df4-b01500c40309', '23', '4')
 Success: Data inserted
-=== 2025-09-30 06:52:24 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '1d9d8cfd-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 24
-=== 2025-09-30 06:52:27 ===
+=== 2025-09-30 17:42:27 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 23
+=== 2025-09-30 17:42:31 ===
 Input: Array
 (
-    [kerjaan_uuid] => 1d9d8cfd-9d2f-11f0-8219-8f13b2443d65
+    [kerjaan_uuid] => c4add2b3-9d2e-11f0-8219-8f13b2443d65
     [user_id] => 7
 )
 
-kerjaan_uuid: 1d9d8cfd-9d2f-11f0-8219-8f13b2443d65, user_id: 7
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '1d9d8cfd-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 24
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '24' AND user_id = '7'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('f9685bd5-84de-48db-8eca-ea78fc72c609', '24', '7')
+kerjaan_uuid: c4add2b3-9d2e-11f0-8219-8f13b2443d65, user_id: 7
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 23
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '23' AND user_id = '7'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('fc1f5d1a-59c0-4be0-b8c7-5def4d192370', '23', '7')
 Success: Data inserted
-=== 2025-09-30 06:52:28 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '1d9d8cfd-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 24
-=== 2025-09-30 06:52:31 ===
+=== 2025-09-30 17:42:32 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 23
+=== 2025-09-30 17:42:36 ===
 Input: Array
 (
-    [kerjaan_uuid] => 1d9d8cfd-9d2f-11f0-8219-8f13b2443d65
+    [kerjaan_uuid] => c4add2b3-9d2e-11f0-8219-8f13b2443d65
     [user_id] => 8
 )
 
-kerjaan_uuid: 1d9d8cfd-9d2f-11f0-8219-8f13b2443d65, user_id: 8
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '1d9d8cfd-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 24
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '24' AND user_id = '8'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('2f8ff318-93c4-4403-891b-139325283f60', '24', '8')
+kerjaan_uuid: c4add2b3-9d2e-11f0-8219-8f13b2443d65, user_id: 8
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 23
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '23' AND user_id = '8'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('e82f556b-8389-4062-8cb5-cb768430fd80', '23', '8')
 Success: Data inserted
-=== 2025-09-30 06:52:32 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '1d9d8cfd-9d2f-11f0-8219-8f13b2443d65'
-kerjaan_id found: 24
-=== 2025-09-30 06:53:35 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '69cfffce-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 16
-=== 2025-09-30 06:53:44 ===
+=== 2025-09-30 17:42:36 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 23
+=== 2025-09-30 17:42:43 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 22
+=== 2025-09-30 17:42:48 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 21
+=== 2025-09-30 17:42:52 ===
 Input: Array
 (
-    [kerjaan_uuid] => 69cfffce-9b78-11f0-8bcf-3d449d4688d7
+    [kerjaan_uuid] => a652033f-9d2e-11f0-8219-8f13b2443d65
     [user_id] => 2
 )
 
-kerjaan_uuid: 69cfffce-9b78-11f0-8bcf-3d449d4688d7, user_id: 2
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '69cfffce-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 16
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '16' AND user_id = '2'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('2d8176fa-086d-4d14-a200-76b875dfc558', '16', '2')
+kerjaan_uuid: a652033f-9d2e-11f0-8219-8f13b2443d65, user_id: 2
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 21
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '21' AND user_id = '2'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('aca5d382-d1ae-4be4-ac54-1bdf2dcdc035', '21', '2')
 Success: Data inserted
-=== 2025-09-30 06:53:45 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '69cfffce-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 16
-=== 2025-09-30 06:53:49 ===
+=== 2025-09-30 17:42:54 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 21
+=== 2025-09-30 17:42:57 ===
 Input: Array
 (
-    [kerjaan_uuid] => 69cfffce-9b78-11f0-8bcf-3d449d4688d7
+    [kerjaan_uuid] => a652033f-9d2e-11f0-8219-8f13b2443d65
     [user_id] => 3
 )
 
-kerjaan_uuid: 69cfffce-9b78-11f0-8bcf-3d449d4688d7, user_id: 3
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '69cfffce-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 16
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '16' AND user_id = '3'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('cfa7f217-ca0c-4bfe-824a-53f096f78f48', '16', '3')
+kerjaan_uuid: a652033f-9d2e-11f0-8219-8f13b2443d65, user_id: 3
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 21
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '21' AND user_id = '3'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('685d9f7b-4e51-44b3-8388-d9283fa4ec19', '21', '3')
 Success: Data inserted
-=== 2025-09-30 06:53:50 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '69cfffce-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 16
-=== 2025-09-30 06:53:53 ===
+=== 2025-09-30 17:42:58 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 21
+=== 2025-09-30 17:43:01 ===
 Input: Array
 (
-    [kerjaan_uuid] => 69cfffce-9b78-11f0-8bcf-3d449d4688d7
+    [kerjaan_uuid] => a652033f-9d2e-11f0-8219-8f13b2443d65
     [user_id] => 4
 )
 
-kerjaan_uuid: 69cfffce-9b78-11f0-8bcf-3d449d4688d7, user_id: 4
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '69cfffce-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 16
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '16' AND user_id = '4'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('6901e653-3a84-44b2-a255-7f495272c50c', '16', '4')
+kerjaan_uuid: a652033f-9d2e-11f0-8219-8f13b2443d65, user_id: 4
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 21
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '21' AND user_id = '4'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('a65a94c5-084b-4325-8247-89398c18caa4', '21', '4')
 Success: Data inserted
-=== 2025-09-30 06:53:54 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '69cfffce-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 16
-=== 2025-09-30 06:53:57 ===
+=== 2025-09-30 17:43:02 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 21
+=== 2025-09-30 17:43:05 ===
 Input: Array
 (
-    [kerjaan_uuid] => 69cfffce-9b78-11f0-8bcf-3d449d4688d7
+    [kerjaan_uuid] => a652033f-9d2e-11f0-8219-8f13b2443d65
     [user_id] => 7
 )
 
-kerjaan_uuid: 69cfffce-9b78-11f0-8bcf-3d449d4688d7, user_id: 7
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '69cfffce-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 16
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '16' AND user_id = '7'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('519c1a59-8a93-49a4-8961-5c1397c582d4', '16', '7')
+kerjaan_uuid: a652033f-9d2e-11f0-8219-8f13b2443d65, user_id: 7
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 21
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '21' AND user_id = '7'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('7f66c59e-0234-45b8-abfa-51d800c7c656', '21', '7')
 Success: Data inserted
-=== 2025-09-30 06:53:58 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '69cfffce-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 16
-=== 2025-09-30 06:54:06 ===
+=== 2025-09-30 17:43:06 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 21
+=== 2025-09-30 17:43:08 ===
 Input: Array
 (
-    [kerjaan_uuid] => 69cfffce-9b78-11f0-8bcf-3d449d4688d7
+    [kerjaan_uuid] => a652033f-9d2e-11f0-8219-8f13b2443d65
     [user_id] => 8
 )
 
-kerjaan_uuid: 69cfffce-9b78-11f0-8bcf-3d449d4688d7, user_id: 8
+kerjaan_uuid: a652033f-9d2e-11f0-8219-8f13b2443d65, user_id: 8
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 21
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '21' AND user_id = '8'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('b158725a-194d-4661-9821-142707740493', '21', '8')
+Success: Data inserted
+=== 2025-09-30 17:43:09 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 21
+=== 2025-09-30 17:43:13 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '7365e83c-9b78-11f0-8bcf-3d449d4688d7'
+kerjaan_id found: 17
+=== 2025-09-30 17:43:16 ===
 Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '69cfffce-9b78-11f0-8bcf-3d449d4688d7'
 kerjaan_id found: 16
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '16' AND user_id = '8'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('916b44a1-4a75-4cf4-860a-a1f02ac6ff2e', '16', '8')
-Success: Data inserted
-=== 2025-09-30 06:54:07 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '69cfffce-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 16
-=== 2025-09-30 06:54:14 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '7365e83c-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 17
-=== 2025-09-30 06:54:17 ===
-Input: Array
-(
-    [kerjaan_uuid] => 7365e83c-9b78-11f0-8bcf-3d449d4688d7
-    [user_id] => 2
-)
-
-kerjaan_uuid: 7365e83c-9b78-11f0-8bcf-3d449d4688d7, user_id: 2
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '7365e83c-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 17
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '17' AND user_id = '2'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('864a7160-f1a5-4666-9d10-ee5701b751ac', '17', '2')
-Success: Data inserted
-=== 2025-09-30 06:54:18 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '7365e83c-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 17
-=== 2025-09-30 06:54:22 ===
-Input: Array
-(
-    [kerjaan_uuid] => 7365e83c-9b78-11f0-8bcf-3d449d4688d7
-    [user_id] => 3
-)
-
-kerjaan_uuid: 7365e83c-9b78-11f0-8bcf-3d449d4688d7, user_id: 3
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '7365e83c-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 17
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '17' AND user_id = '3'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('eb8ff74f-81e1-4570-b0b6-99816b7c4925', '17', '3')
-Success: Data inserted
-=== 2025-09-30 06:54:23 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '7365e83c-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 17
-=== 2025-09-30 06:54:26 ===
-Input: Array
-(
-    [kerjaan_uuid] => 7365e83c-9b78-11f0-8bcf-3d449d4688d7
-    [user_id] => 4
-)
-
-kerjaan_uuid: 7365e83c-9b78-11f0-8bcf-3d449d4688d7, user_id: 4
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '7365e83c-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 17
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '17' AND user_id = '4'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('a024d401-369b-43d8-af34-e5f6429b3d43', '17', '4')
-Success: Data inserted
-=== 2025-09-30 06:54:27 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '7365e83c-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 17
-=== 2025-09-30 06:54:31 ===
-Input: Array
-(
-    [kerjaan_uuid] => 7365e83c-9b78-11f0-8bcf-3d449d4688d7
-    [user_id] => 7
-)
-
-kerjaan_uuid: 7365e83c-9b78-11f0-8bcf-3d449d4688d7, user_id: 7
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '7365e83c-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 17
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '17' AND user_id = '7'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('3dcc830a-2764-4167-a23e-6b76d36fa027', '17', '7')
-Success: Data inserted
-=== 2025-09-30 06:54:32 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '7365e83c-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 17
-=== 2025-09-30 06:54:35 ===
-Input: Array
-(
-    [kerjaan_uuid] => 7365e83c-9b78-11f0-8bcf-3d449d4688d7
-    [user_id] => 8
-)
-
-kerjaan_uuid: 7365e83c-9b78-11f0-8bcf-3d449d4688d7, user_id: 8
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '7365e83c-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 17
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '17' AND user_id = '8'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('de69c727-d021-41da-8e18-414c4c1e07b2', '17', '8')
-Success: Data inserted
-=== 2025-09-30 06:54:35 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '7365e83c-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 17
-=== 2025-09-30 06:56:36 ===
+=== 2025-10-01 01:03:27 ===
 POST: Array
 (
 )
 
 GET: Array
 (
+    [job_uuid] => e930463e-9d2d-11f0-8219-8f13b2443d65
+)
+
+=== 2025-10-01 03:38:25 ===
+POST: Array
+(
+)
+
+GET: Array
+(
+    [job_uuid] => e930463e-9d2d-11f0-8219-8f13b2443d65
 )
 

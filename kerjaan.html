@@ -9,186 +9,8 @@
         // Inisialisasi Eruda
         eruda.init();
         console.log('Eruda initialized');
-    </script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      background-color: #f4f4f4;
-    }
-    
-    header {
-      background: #333;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-    
-    nav {
-      background: #555;
-      padding: 0.5rem;
-      text-align: center;
-    }
-    
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      margin: 0 0.5rem;
-    }
-    
-    nav a:hover {
-      background: #777;
-    }
-    
-     nav .active {
-      background: #777;
-    }
-    
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .cards {
-      flex: 1;
-      min-width: 300px;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    
-    .card {
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      padding: 15px;
-      margin-bottom: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    
-    .card:hover {
-      background: #e9e9e9;
-    }
-    
-    .card h3 {
-      margin-bottom: 10px;
-      color: #333;
-    }
-    
-    .card p {
-      margin-bottom: 5px;
-    }
-    
-    .form-group {
-      margin-bottom: 15px;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-    
-    button {
-      background: #333;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-right: 10px;
-    }
-    
-    button:hover {
-      background: #555;
-    }
-    
-    .btn-success {
-      background: #28a745;
-    }
-    
-    .btn-success:hover {
-      background: #218838;
-    }
-    
-    .btn-danger {
-      background: #dc3545;
-    }
-    
-    .btn-danger:hover {
-      background: #c82333;
-    }
-    
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .modal-content {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      width: 90%;
-      max-width: 500px;
-    }
-    
-    .modal-header {
-      display: flex;
-      justify-content: between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-    
-    .close {
-      font-size: 24px;
-      cursor: pointer;
-    }
-    
-    .uuid-display {
-      font-family: monospace;
-      background: #f0f0f0;
-      padding: 5px;
-      border-radius: 3px;
-      font-size: 12px;
-      word-break: break-all;
-    }
-    
-    footer {
-      background: #333;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 20px;
-    }
-  </style>
+    </script><link rel="stylesheet" href="style/style_kerjaan.css">
+  
 </head>
 <body>
   <header>Daftar Pekerjaan</header>
@@ -258,6 +80,7 @@
       <h3>Tambah Pekerjaan Baru</h3>
       <span class="close" onclick="closeAddJobsModal()">&times;</span>
     </div>
+    <!-- Tambah Pekerjaan -->
     <form id="addJobsForm">
       <div class="form-group">
         <label for="pengguna">Nama Pengguna:</label>
@@ -288,6 +111,49 @@
     </form>
   </div>
 </div>
+
+
+
+<!-- Modal untuk Tambah Pekerjaan -->
+<div id="editJobsModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Edit Pekerjaan Baru</h3>
+      <span class="close" onclick="closeAddJobsModal()">&times;</span>
+    </div>
+    <!-- Tambah Pekerjaan -->
+    <form id="editJobsForm">
+      <div class="form-group">
+        <label for="edit_pengguna">Nama Pengguna:</label>
+        <input type="text" id="edit_pengguna" name="pengguna" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="edit_lokasi">Lokasi:</label>
+        <input type="text" id="edit_lokasi" name="lokasi" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="edit_status_pembayaran">Status Pembayaran:</label>
+        <select id="edit_status_pembayaran" name="status_pembayaran" required>
+          <option value="">Pilih Status</option>
+          <option value="no">Belum Bayar</option>
+          <option value="yes">Sudah Bayar</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="edit_tanggal_job">Tanggal:</label>
+        <input type="date" id="edit_tanggal_job" name="tanggal" required>
+      </div>
+      
+      <button type="submit" class="btn-success">Simpan</button>
+      <button type="button" onclick="closeEditJobsModal()">Batal</button>
+    </form>
+  </div>
+</div>
+
+
 
   <!-- Modal untuk Tambah Pesanan -->
   <div id="addOrderModal" class="modal">
@@ -340,6 +206,57 @@
     </div>
   </div>
   
+  <!-- Modal untuk Edit Pesanan -->
+  <div id="editOrderModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Edit Pesanan</h3>
+        <span class="close" onclick="closeEditOrderModal()">&times;</span>
+      </div>
+      <form id="editOrderForm">
+        <div class="form-group">
+          <label for="id_kerjaan">UUID Pekerjaan:</label>
+          <div class="uuid-display" id="uuid_kerjaan_display_edit"></div>
+          <input type="hidden" id="edit_id_kerjaan" name="id_kerjaan" >
+        </div>
+        
+        <div class="form-group">
+          <label for="edit_jenis">Jenis:</label>
+          <select id="edit_jenis" name="jenis" required>
+            <option value="">Pilih Jenis</option>
+            <option value="tenda">Tenda</option>
+            <option value="panggung">Panggung</option>
+            <option value="gapura">Gapura</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="edit_jumlah_unit">Jumlah Unit:</label>
+          <input type="number" id="edit_jumlah_unit" name="jumlah_unit" step="0.01" min="0" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="edit_status">Status:</label>
+          <select id="edit_status" name="status" required>
+            <option value="">Pilih Status</option>
+            <option value="ps">Pasang (PS)</option>
+            <option value="bkr">Bongkar (BKR)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="edit_jumlah_orang">Jumlah Pekerja:</label>
+          <input type="number" id="edit_jumlah_orang" name="jumlah_orang" step="0.01" min="0" required>
+        </div>
+        <div class="form-group">
+          <label for="edit_tanggal">Tanggal:</label>
+          <input type="date" id="edit_tanggal" name="tanggal" required>
+        </div>
+        <button type="submit" class="btn-success">Simpan</button>
+        <button type="button" onclick="closeEditOrderModal()">Batal</button>
+      </form>
+    </div>
+  </div>
+  
   <footer>© 2025 Sistem Tenda</footer>
   
   <script>
@@ -364,10 +281,13 @@ card.innerHTML = `
     <p><b>Tanggal:</b> ${job.tanggal}</p>
     <p class="uuid-display"><b>UUID:</b> ${job.uuid}</p>
     <button onclick="selectJob('${job.uuid}', ${job.id}, '${job.pengguna}')">Pilih</button>
-    <button onclick="editJob('${job.uuid}')">Edit</button>
+    <button class="btn-edit">Edit</button>
     <button class="btn-danger" onclick="deleteJob('${job.uuid}')">Hapus</button>
 `;
-            
+ //   <button onclick="editJob('${job.uuid}')">Edit</button>  
+ card.querySelector(".btn-edit").addEventListener("click", () => {
+             showEditJobModal(job.uuid, job);
+           });
             container.appendChild(card);
           });
         })
@@ -426,12 +346,16 @@ card.innerHTML = `
               <p><strong>Dibuat:</strong> ${order.tanggal}</p>
               
                <button class="btn-success" onclick="showAddWorksModal('${order.uuid}')">Add</button>
-              <button onclick="editOrder('${order.uuid}')">Edit</button>
+              
+              <button class="btn-edit">Edit</button>
               <button class="btn-danger" onclick="deleteOrder('${order.uuid}')">Hapus</button>
-              
-              
-            `;
+           `;
+           orderDiv.querySelector(".btn-edit").addEventListener("click", () => {
+             showEditOrderModal(order);
+           });
+           
             orderList.appendChild(orderDiv);
+          //  <button onclick="editOrder('${order.uuid}')">Edit</button>
           });
         })
         .catch(error => {
@@ -439,7 +363,29 @@ card.innerHTML = `
           document.getElementById("order-list").innerHTML = "<p>Error loading orders</p>";
         });
     }
+   // Tampilan modal untuk edit Kerjaan
+   
+  function showEditOrderModal(order= null)  {
+    console.log(order);
+    document.getElementById("uuid_kerjaan_display_edit").textContent = order.uuid;
+   document.getElementById("edit_id_kerjaan").value = order.id_kerjaan;
+  
+   document.getElementById("edit_jenis").value = order.jenis;
+  document.getElementById("edit_jumlah_unit").value = order.jumlah_unit;
+    document.getElementById("edit_status").value = order.status;
+    document.getElementById("edit_jumlah_orang").value = order.jumlah_orang;
+    document.getElementById("edit_tanggal").value = order.tanggal;
     
+    selectedOrderUuid = order.uuid;
+    
+    document.getElementById('editOrderModal').style.display = 'flex';
+  }
+  
+  function closeEditOrderModal() {
+    document.getElementById('editOrderModal').style.display = 'none';
+  }
+    
+  // Tampilan Modal Untuk Tambah Kerjaan
     function showAddOrderModal() {
       if (!selectedJobUuid) {
         alert('Pilih pekerjaan terlebih dahulu!');
@@ -477,7 +423,7 @@ card.innerHTML = `
         
         // Kirim request
         console.log('📤 Sending request...');
-        const response = await fetch('save_order.php', {
+        const response = await fetch('php/order_save.php', {
             method: 'POST',
             body: new FormData(this)
         });
@@ -549,13 +495,134 @@ card.innerHTML = `
       }
     }
     
-        // Fungsi unk modal pekerjaan
+    // Fungsi unk modal pekerjaan
     function showAddJobsModal() {
       document.getElementById('addJobsModal').style.display = 'flex';
     }
     function closeAddJobsModal() {
       document.getElementById('addJobsModal').style.display = 'none';
     }
+   
+  // Fungsi untuk menutup modal edit pekerjaan
+function closeEditJobsModal() {
+    const modal = document.getElementById('editJobsModal');
+    modal.style.display = 'none';
+    document.getElementById('editJobsForm').reset();
+}
+
+// Fungsi untuk menampilkan modal edit pekerjaan dengan data yang akan diedit
+function showEditJobModal(jobId, jobData) {
+    // Isi form dengan data yang ada
+    document.getElementById('edit_pengguna').value = jobData.pengguna || '';
+    document.getElementById('edit_lokasi').value = jobData.lokasi || '';
+    document.getElementById('edit_status_pembayaran').value = jobData.status_pembayaran || '';
+    document.getElementById('edit_tanggal_job').value = jobData.tanggal || '';
+    
+    // Simpan ID pekerjaan yang sedang diedit (bisa ditambahkan sebagai hidden input)
+    const form = document.getElementById('editJobsForm');
+    form.setAttribute('data-edit-id', jobId);
+    
+    // Tampilkan modal
+    const modal = document.getElementById('editJobsModal');
+    modal.style.display = 'flex';
+}
+
+// Fungsi untuk menangani submit form edit pekerjaan
+function editJobForm(event) {
+    event.preventDefault();
+    
+    const form = document.getElementById('editJobsForm');
+    const jobId = form.getAttribute('data-edit-id');
+    
+    // Ambil data dari form
+    const formData = {
+        pengguna: document.getElementById('edit_pengguna').value,
+        lokasi: document.getElementById('edit_lokasi').value,
+        status_pembayaran: document.getElementById('edit_status_pembayaran').value,
+        tanggal: document.getElementById('edit_tanggal_job').value
+    };
+    console.log('job ID: ' + jobId);
+    console.log('form data : ' + formData);
+    // Validasi form
+    if (!formData.pengguna || !formData.lokasi || !formData.status_pembayaran || !formData.tanggal) {
+        alert('Harap lengkapi semua field!');
+        return;
+    }
+    
+    // Kirim data ke server (contoh dengan fetch API)
+    fetch(`php/job_save.php?job_uuid=${jobId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Tutup modal setelah berhasil
+        closeEditJobsModal();
+        
+        // Tampilkan pesan sukses
+        alert('Data pekerjaan berhasil diperbarui!');
+        
+        // Refresh data tabel atau update UI
+        refreshJobsTable();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan saat mengupdate data');
+    });
+}
+
+// Event listener untuk form submit
+document.addEventListener('DOMContentLoaded', function() {
+    const editJobsForm = document.getElementById('editJobsForm');
+    if (editJobsForm) {
+        editJobsForm.addEventListener('submit', editJobForm);
+    }
+    
+    // Event listener untuk menutup modal ketika klik di luar modal
+    const modal = document.getElementById('editJobsModal');
+    if (modal) {
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeEditJobsModal();
+            }
+        });
+    }
+});
+
+// Fungsi bantuan untuk refresh tabel (sesuaikan dengan implementasi Anda)
+function refreshJobsTable() {
+    // Implementasi refresh tabel sesuai kebutuhan
+    // Contoh: memuat ulang data dari server
+    console.log('Refreshing jobs table...');
+    
+    // Jika menggunakan AJAX untuk load data:
+    // loadJobsData();
+}
+
+// Contoh fungsi untuk mendapatkan data pekerjaan (sesuaikan dengan kebutuhan)
+function getJobData(jobId) {
+    // Implementasi untuk mendapatkan data pekerjaan dari server
+    // Return promise dengan data pekerjaan
+    return fetch(`/api/jobs/${jobId}`)
+        .then(response => response.json())
+        .then(data => data);
+}
+
+// Contoh penggunaan:
+// showEditJobModal(1, {
+//     pengguna: 'John Doe',
+//     lokasi: 'Jakarta',
+//     status_pembayaran: 'yes',
+//     tanggal: '2024-01-15'
+// }); 
     
     // Fungsi unk modal pekerjaan
     function showAddWorksModal() {
@@ -713,6 +780,34 @@ async function deleteWorker(workerUuid) {
         alert('Error menghapus pekerja');
     }
 }
+
+// Event listener untuk form edit kerjaan
+document.getElementById("editOrderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    
+formData.append('uuid', selectedOrderUuid);
+
+    fetch("php/order_edit.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            alert("Pesanan berhasil disimpan");
+            closeEditOrderModal();
+            location.reload(); // kalau mau auto refresh
+        } else {
+            alert("Gagal: " + data.message);
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Terjadi error pada koneksi");
+    });
+});
 
 // Event listener untuk form tambah pekerjaan
 document.getElementById('addJobsForm').addEventListener('submit', async function(e) {
