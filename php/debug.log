@@ -407,3 +407,70 @@ Parsed Input: Array
 UUID from GET: 24eb04c7-9781-11f0-b5ce-239da9796382
 Update executed: success
 Rows affected: 1
+=== 2025-10-01 16:23:17 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '56585a34-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 20
+=== 2025-10-01 16:23:56 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '4b2ef33e-9d2e-11f0-8219-8f13b2443d65'
+kerjaan_id found: 19
+=== 2025-10-01 16:29:10 ===
+POST: Array
+(
+)
+
+GET: Array
+(
+)
+
+=== 2025-10-01 16:29:31 ===
+POST: Array
+(
+    [id_kerjaan] => undefined
+    [jenis] => tenda
+    [jumlah_unit] => 3
+    [status] => ps
+    [jumlah_orang] => 5
+    [tanggal] => 2025-10-02
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => undefined
+    [jumlah_orang] => 5
+    [jenis] => tenda
+    [jumlah_unit] => 3
+    [status] => ps
+    [tanggal] => 2025-10-02
+)
+
+ERROR: Cannot add or update a child row: a foreign key constraint fails (`tenda`.`detail_kerjaan`, CONSTRAINT `fk_detail_kerjaan_uuid` FOREIGN KEY (`id_kerjaan`) REFERENCES `kerjaan` (`uuid`) ON DELETE CASCADE)
+=== 2025-10-01 16:29:47 ===
+POST: Array
+(
+    [id_kerjaan] => undefined
+    [jenis] => tenda
+    [jumlah_unit] => 3
+    [status] => ps
+    [jumlah_orang] => 5
+    [tanggal] => 2025-10-02
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => undefined
+    [jumlah_orang] => 5
+    [jenis] => tenda
+    [jumlah_unit] => 3
+    [status] => ps
+    [tanggal] => 2025-10-02
+)
+
+ERROR: Cannot add or update a child row: a foreign key constraint fails (`tenda`.`detail_kerjaan`, CONSTRAINT `fk_detail_kerjaan_uuid` FOREIGN KEY (`id_kerjaan`) REFERENCES `kerjaan` (`uuid`) ON DELETE CASCADE)

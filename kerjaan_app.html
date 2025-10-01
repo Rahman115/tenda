@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manajemen Pekerjaan</title>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+
+    <link rel="stylesheet" href="style/style_kerjaan.css" />
+  </head>
+  <body>
+    <header>Daftar Pekerjaan</header>
+
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="users.html">Users</a>
+      <a href="kerjaan.html" class="active">Kerjaan</a>
+    </nav>
+
+    <div class="container">
+      <div class="cards">
+        <div id="detail">
+          <h2>Detail Pesanan</h2>
+          <p>Pilih pekerjaan untuk melihat detail pesanan</p>
+          <div id="order-list"></div>
+          <button onclick="showAddOrderModal()" style="margin-top: 20px">
+            + Pesanan
+          </button>
+          <button onclick="showAddJobsModal()" style="margin-top: 20px">
+            + Pekerjaan
+          </button>
+        </div>
+      </div>
+
+      <div class="cards">
+        <h2>Daftar Pekerjaan</h2>
+        <div id="job-list"></div>
+      </div>
+    </div>
+    <!-- Modal untuk Tambah Pekerja -->
+    <div id="addWorksModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Tambah Pekerja</h3>
+          <span class="close" onclick="closeAddWorksModal()">&times;</span>
+        </div>
+        <form id="addWorksForm">
+          <div class="form-group">
+            <label for="kerjaan_uuid">UUID Pekerjaan:</label>
+            <div class="uuid-display" id="kerjaan_uuid_display"></div>
+            <input type="hidden" id="kerjaan_uuid" name="kerjaan_uuid" />
+          </div>
+
+          <div class="form-group">
+            <label for="user_id">Pilih Pekerja:</label>
+            <select id="user_id" name="user_id" required>
+              <option value="">Pilih Pekerja</option>
+              <!-- Options akan diisi via JavaScript -->
+            </select>
+          </div>
+
+          <button type="submit" class="btn-success">Tambah Pekerja</button>
+        </form>
+
+        <!-- Daftar Pekerja yang Sudah Ditambahkan -->
+        <div id="workers-list" style="margin-top: 20px">
+          <h4>Daftar Pekerja</h4>
+          <div id="workers-container"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal untuk Tambah Pekerjaan -->
+    <div id="addJobsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Tambah Pekerjaan Baru</h3>
+          <span class="close" onclick="closeAddJobsModal()">&times;</span>
+        </div>
+        <!-- Tambah Pekerjaan -->
+        <form id="addJobsForm">
+          <div class="form-group">
+            <label for="pengguna">Nama Pengguna:</label>
+            <input type="text" id="pengguna" name="pengguna" required />
+          </div>
+
+          <div class="form-group">
+            <label for="lokasi">Lokasi:</label>
+            <input type="text" id="lokasi" name="lokasi" required />
+          </div>
+
+          <div class="form-group">
+            <label for="status_pembayaran">Status Pembayaran:</label>
+            <select id="status_pembayaran" name="status_pembayaran" required>
+              <option value="">Pilih Status</option>
+              <option value="no">Belum Bayar</option>
+              <option value="yes">Sudah Bayar</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="tanggal">Tanggal:</label>
+            <input type="date" id="tanggal_job" name="tanggal" required />
+          </div>
+
+          <button type="submit" class="btn-success">Simpan</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal untuk Edit Pekerjaan -->
+    <div id="editJobsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Edit Pekerjaan Baru</h3>
+          <span class="close" onclick="closeAddJobsModal()">&times;</span>
+        </div>
+        <!-- Tambah Pekerjaan -->
+        <form id="editJobsForm">
+          <div class="form-group">
+            <label for="edit_pengguna">Nama Pengguna:</label>
+            <input type="text" id="edit_pengguna" name="pengguna" required />
+          </div>
+
+          <div class="form-group">
+            <label for="edit_lokasi">Lokasi:</label>
+            <input type="text" id="edit_lokasi" name="lokasi" required />
+          </div>
+
+          <div class="form-group">
+            <label for="edit_status_pembayaran">Status Pembayaran:</label>
+            <select
+              id="edit_status_pembayaran"
+              name="status_pembayaran"
+              required
+            >
+              <option value="">Pilih Status</option>
+              <option value="no">Belum Bayar</option>
+              <option value="yes">Sudah Bayar</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="edit_tanggal_job">Tanggal:</label>
+            <input type="date" id="edit_tanggal_job" name="tanggal" required />
+          </div>
+
+          <button type="submit" class="btn-success">Simpan</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal untuk Tambah Pesanan -->
+    <div id="addOrderModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Tambah Pesanan Baru</h3>
+          <span class="close" onclick="closeAddOrderModal()">&times;</span>
+        </div>
+        <form id="addOrderForm">
+          <div class="form-group">
+            <label for="id_kerjaan">UUID Pekerjaan:</label>
+            <div class="uuid-display" id="uuid_kerjaan_display"></div>
+            <input type="hidden" id="id_kerjaan" name="id_kerjaan" />
+          </div>
+
+          <div class="form-group">
+            <label for="jenis">Jenis:</label>
+            <select id="jenis" name="jenis" required>
+              <option value="">Pilih Jenis</option>
+              <option value="tenda">Tenda</option>
+              <option value="panggung">Panggung</option>
+              <option value="gapura">Gapura</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="jumlah_unit">Jumlah Unit:</label>
+            <input
+              type="number"
+              id="jumlah_unit"
+              name="jumlah_unit"
+              step="0.01"
+              min="0"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="status">Status:</label>
+            <select id="status" name="status" required>
+              <option value="">Pilih Status</option>
+              <option value="ps">Pasang (PS)</option>
+              <option value="bkr">Bongkar (BKR)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="jumlah_orang">Jumlah Pekerja:</label>
+            <input
+              type="number"
+              id="jumlah_orang"
+              name="jumlah_orang"
+              step="0.01"
+              min="0"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="tanggal">Tanggal:</label>
+            <input type="date" id="tanggal" name="tanggal" required />
+          </div>
+          <button type="submit" class="btn-success">Simpan</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal untuk Edit Pesanan -->
+    <div id="editOrderModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Edit Pesanan</h3>
+          <span class="close" onclick="closeEditOrderModal()">&times;</span>
+        </div>
+        <form id="editOrderForm">
+          <div class="form-group">
+            <label for="id_kerjaan">UUID Pekerjaan:</label>
+            <div class="uuid-display" id="uuid_kerjaan_display_edit"></div>
+            <input type="hidden" id="edit_id_kerjaan" name="id_kerjaan" />
+          </div>
+
+          <div class="form-group">
+            <label for="edit_jenis">Jenis:</label>
+            <select id="edit_jenis" name="jenis" required>
+              <option value="">Pilih Jenis</option>
+              <option value="tenda">Tenda</option>
+              <option value="panggung">Panggung</option>
+              <option value="gapura">Gapura</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="edit_jumlah_unit">Jumlah Unit:</label>
+            <input
+              type="number"
+              id="edit_jumlah_unit"
+              name="jumlah_unit"
+              step="0.01"
+              min="0"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="edit_status">Status:</label>
+            <select id="edit_status" name="status" required>
+              <option value="">Pilih Status</option>
+              <option value="ps">Pasang (PS)</option>
+              <option value="bkr">Bongkar (BKR)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="edit_jumlah_orang">Jumlah Pekerja:</label>
+            <input
+              type="number"
+              id="edit_jumlah_orang"
+              name="jumlah_orang"
+              step="0.01"
+              min="0"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="edit_tanggal">Tanggal:</label>
+            <input type="date" id="edit_tanggal" name="tanggal" required />
+          </div>
+          <button type="submit" class="btn-success">Simpan</button>
+          
+        </form>
+      </div>
+    </div>
+
+    <footer>© 2025 Sistem Tenda</footer>
+    <!-- Di akhir file HTML, sebelum </body> -->
+    <script src="js/modal-manager.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      // Inisialisasi Eruda
+      eruda.init()
+      console.log('Aplikasi initialized')
+    </script>
+  </body>
+</html>
