@@ -13,13 +13,15 @@ $jenis = $_GET['jenis'];
 // Log values
 // file_put_contents('debug.log', "kerjaan_id: $jenis\n", FILE_APPEND);
 
-  $sql = "SELECT k.pengguna, k.lokasi, d.tanggal, d.jumlah_unit 
+  $sql = "SELECT k.pengguna, k.lokasi, d.tanggal, 
+  CONVERT(d.jumlah_unit, SIGNED) as jumlah_unit
           FROM kerjaan AS k 
           INNER JOIN detail_kerjaan AS d 
           ON k.uuid = d.id_kerjaan 
           WHERE d.jenis = '$jenis' 
           AND d.status = 'ps'
-          AND d.jumlah_unit IS NOT NULL;";
+          AND d.jumlah_unit IS NOT NULL
+          ORDER BY d.tanggal DESC";
     
 // Log values
 // file_put_contents('debug.log', "kerjaan: $sql\n", FILE_APPEND);
@@ -33,22 +35,4 @@ while ($row = $result->fetch_assoc()) {
 
 echo json_encode($jobs, JSON_PRETTY_PRINT);
 
-
-/**
-
-$result = $conn->query("SELECT SUM(d.jumlah_unit) as total_jumlah_unit
-FROM kerjaan AS k 
-LEFT JOIN detail_kerjaan AS d 
-    ON k.uuid = d.id_kerjaan 
-    AND d.jenis = ? 
-    AND d.status = 'ps'");
-
-$jobs = [];
-while ($row = $result->fetch_assoc()) {
-    $jobs[] = $row;
-}
-
-echo json_encode($jobs, JSON_PRETTY_PRINT);
-
-**/
 ?>

@@ -1,297 +1,309 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="style/style.css">
-  
-  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-  <script>
-    // Inisialisasi Eruda
-    eruda.init();
-    console.log('Eruda initialized');
-  </script>
-  
-  <style>
-    /* Styling tambahan untuk kard statistik yang dapat diklik */
-    .card {
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-    
-    .card:active {
-      transform: translateY(0);
-    }
-    
-    .card::after {
-      content: "Klik untuk detail";
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      font-size: 0.7rem;
-      color: #666;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .card:hover::after {
-      opacity: 1;
-    }
-    
-    /* Styling untuk modal detail */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .modal-content {
-      background-color: white;
-      padding: 20px;
-      border-radius: 8px;
-      width: 80%;
-      max-width: 600px;
-      max-height: 80vh;
-      overflow-y: auto;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-    
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 10px;
-    }
-    
-    .modal-close {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #666;
-    }
-    
-    .modal-close:hover {
-      color: #333;
-    }
-    
-    .list-item {
-      padding: 10px;
-      border-bottom: 1px solid #f0f0f0;
-      display: flex;
-      justify-content: space-between;
-    }
-    
-    .list-item:last-child {
-      border-bottom: none;
-    }
-    
-    .list-item:hover {
-      background-color: #f9f9f9;
-    }
-    
-    .view-all-btn {
-      display: block;
-      margin: 15px auto 0;
-      padding: 8px 15px;
-      background-color: #4a6cf7;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-    
-    .view-all-btn:hover {
-      background-color: #3a5ce5;
-    }
-    
-    .loading {
-      text-align: center;
-      padding: 20px;
-      color: #666;
-    }
-    
-    .error {
-      text-align: center;
-      padding: 20px;
-      color: #e74c3c;
-    }
-  </style>
-</head>
-<body>
-  <header>Dashboard</header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style/style.css" />
 
-  <nav>
-    <a href="dashboard.html" class="active">Dashboard</a>
-    <a href="users.html">Users</a>
-    <a href="kerjaan.html">Kerjaan</a>
-  </nav>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script>
+      // Inisialisasi Eruda
+      eruda.init()
+      console.log('Eruda initialized')
+    </script>
 
-  <div class="container">
-    <div class="cards">
-      <div class="card" id="cardPekerjaan" data-type="pekerjaan">
-        <h2 id="totalPekerjaan">0</h2>
-        <p>Total Pekerjaan</p>
-      </div>
-      <div class="card" id="cardUsers" data-type="users">
-        <h2 id="totalUsers">0</h2>
-        <p>Total Users</p>
-      </div>
-      <div class="card" id="cardTenda" data-type="tenda">
-        <h2 id="totalTenda">0</h2>
-        <p>Total Tenda Terpasang</p>
-      </div>
-      <div class="card" id="cardPanggung" data-type="panggung">
-        <h2 id="totalPanggung">0</h2>
-        <p>Total Panggung Terpasang</p>
-      </div>
-      <div class="card" id="cardGapura" data-type="gapura">
-        <h2 id="totalGapura">0</h2>
-        <p>Total Gapura Terpasang</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal untuk menampilkan detail -->
-  <div id="detailModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 id="modalTitle">Detail</h3>
-        <button class="modal-close">&times;</button>
-      </div>
-      <div id="modalBody">
-        <!-- Konten detail akan dimuat di sini -->
-      </div>
-      <button id="viewAllBtn" class="view-all-btn">Lihat Semua</button>
-    </div>
-  </div>
-
-  <footer>© 2025 Sistem Tenda</footer>
-
-  <script>
-    // Konfigurasi API endpoints
-    const API_ENDPOINTS = {
-      pekerjaan: "pekerjaan.php",
-      users: "users.php",
-      tenda: "php/length_orders.php?kerjaan_jenis=tenda",
-      panggung: "php/length_orders.php?kerjaan_jenis=panggung",
-      gapura: "php/length_orders.php?kerjaan_jenis=gapura",
-      detailPekerjaan: "php/api_pekerjaan.php?action=list",
-      detailUsers: "php/api_users.php?action=list",
-      detailTenda: "php/api_kerjaan.php?action=list&jenis=tenda",
-      detailPanggung: "php/api_kerjaan.php?action=list&jenis=panggung",
-      detailGapura: "php/api_kerjaan.php?action=list&jenis=gapura"
-    };
-
-    // Cache untuk menyimpan data yang sudah diambil
-    const dataCache = {};
-
-    // Fungsi untuk mengambil data dari API
-    async function fetchData(endpoint) {
-      try {
-        const response = await fetch(endpoint);
-        // console.log(response);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return await response.json();
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
+    <style>
+      /* Styling tambahan untuk kard statistik yang dapat diklik */
+      .card {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
       }
-    }
 
-    // Fungsi untuk menampilkan modal detail
-    async function showDetailModal(type) {
-      const modal = document.getElementById('detailModal');
-      const modalTitle = document.getElementById('modalTitle');
-      const modalBody = document.getElementById('modalBody');
-      const viewAllBtn = document.getElementById('viewAllBtn');
-      
-      // Set judul modal berdasarkan tipe
-      const titles = {
-        pekerjaan: "Detail Pekerjaan",
-        users: "Detail Users",
-        tenda: "Detail Tenda Terpasang",
-        panggung: "Detail Panggung Terpasang",
-        gapura: "Detail Gapura Terpasang"
-      };
-      
-      modalTitle.textContent = titles[type] || "Detail";
-      // console.log(type);
-      // console.log(titles[type]);
-      // Tampilkan loading
-      modalBody.innerHTML = '<div class="loading">Memuat data...</div>';
-      modal.style.display = "flex";
-      
-      try {
-        // Cek cache dulu
-        let data;
-        const cacheKey = `detail_${type}`;
-        console.log(cacheKey);
-        console.log(dataCache[cacheKey]);
-        if (dataCache[cacheKey]) {
-          console.log('Saya disini if ');
-          data = dataCache[cacheKey];
-          console.log(data);
-        } else {
-          // Ambil data dari API
-          const endpoint = API_ENDPOINTS[`detail${type.charAt(0).toUpperCase() + type.slice(1)}`] || API_ENDPOINTS.detailPekerjaan;
-          console.log(endpoint);
-          data = await fetchData(endpoint);
-          console.log('Ambil data : ' + data);
-          // Simpan ke cache
-          console.log(endpoint);
-          dataCache[cacheKey] = data;
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .card:active {
+        transform: translateY(0);
+      }
+
+      .card::after {
+        content: 'Klik untuk detail';
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 0.7rem;
+        color: #666;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .card:hover::after {
+        opacity: 1;
+      }
+
+      /* Styling untuk modal detail */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 80%;
+        max-width: 600px;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+      }
+
+      .modal-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #666;
+      }
+
+      .modal-close:hover {
+        color: #333;
+      }
+
+      .list-item {
+        padding: 10px;
+        border-bottom: 1px solid #f0f0f0;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .list-item:last-child {
+        border-bottom: none;
+      }
+
+      .list-item:hover {
+        background-color: #f9f9f9;
+      }
+
+      .view-all-btn {
+        display: block;
+        margin: 15px auto 0;
+        padding: 8px 15px;
+        background-color: #4a6cf7;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+
+      .view-all-btn:hover {
+        background-color: #3a5ce5;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 20px;
+        color: #666;
+      }
+
+      .error {
+        text-align: center;
+        padding: 20px;
+        color: #e74c3c;
+      }
+    </style>
+  </head>
+  <body>
+    <header>Dashboard</header>
+
+    <nav>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="users.html">Users</a>
+      <a href="kerjaan.html">Kerjaan</a>
+    </nav>
+
+    <div class="container">
+      <div class="cards">
+        <div class="card" id="cardPekerjaan" data-type="pekerjaan">
+          <h2 id="totalPekerjaan">0</h2>
+          <p>Total Pekerjaan</p>
+        </div>
+        <div class="card" id="cardUsers" data-type="users">
+          <h2 id="totalUsers">0</h2>
+          <p>Total Users</p>
+        </div>
+        <div class="card" id="cardTenda" data-type="tenda">
+          <h2 id="totalTenda">0</h2>
+          <p>Total Tenda Terpasang</p>
+        </div>
+        <div class="card" id="cardPanggung" data-type="panggung">
+          <h2 id="totalPanggung">0</h2>
+          <p>Total Panggung Terpasang</p>
+        </div>
+        <div class="card" id="cardGapura" data-type="gapura">
+          <h2 id="totalGapura">0</h2>
+          <p>Total Gapura Terpasang</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal untuk menampilkan detail -->
+    <div id="detailModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modalTitle">Detail</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div id="modalBody">
+          <!-- Konten detail akan dimuat di sini -->
+        </div>
+        <button id="viewAllBtn" class="view-all-btn">Lihat Semua</button>
+      </div>
+    </div>
+
+    <footer>© 2025 Sistem Tenda</footer>
+
+    <script>
+      // Konfigurasi API endpoints
+      const API_ENDPOINTS = {
+        pekerjaan: 'pekerjaan.php',
+        users: 'users.php',
+        tenda: 'php/length_orders.php?kerjaan_jenis=tenda',
+        panggung: 'php/length_orders.php?kerjaan_jenis=panggung',
+        gapura: 'php/length_orders.php?kerjaan_jenis=gapura',
+        detailPekerjaan: 'php/api_pekerjaan.php?action=list',
+        detailUsers: 'php/api_users.php?action=list',
+        detailTenda: 'php/api_kerjaan.php?action=list&jenis=tenda',
+        detailPanggung: 'php/api_kerjaan.php?action=list&jenis=panggung',
+        detailGapura: 'php/api_kerjaan.php?action=list&jenis=gapura'
+      }
+
+      // Cache untuk menyimpan data yang sudah diambil
+      const dataCache = {}
+
+      // Fungsi untuk mengambil data dari API
+      async function fetchData(endpoint) {
+        try {
+          const response = await fetch(endpoint)
+          // console.log(response);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
+          }
+          return await response.json()
+        } catch (error) {
+          console.error('Error fetching data:', error)
+          throw error
         }
-        
-        // Isi konten modal dengan data dari API
-        let content = '';
-        console.log(data);
-        if (!data || data.length === 0) {
-          content = '<div class="error">Tidak ada data untuk ditampilkan.</div>';
-        } else {
-          // Tampilkan maksimal 5 item
-          const itemsToShow = data.slice(0, 5);
-          
-          itemsToShow.forEach(item => {
-            // Format data berdasarkan tipe
-            console.log('Type : ' + type);
-            console.log(item);
-            
-            if (type === 'pekerjaan') {
-              content += `
+      }
+
+      // Fungsi untuk menampilkan modal detail
+      async function showDetailModal(type) {
+        const modal = document.getElementById('detailModal')
+        const modalTitle = document.getElementById('modalTitle')
+        const modalBody = document.getElementById('modalBody')
+        const viewAllBtn = document.getElementById('viewAllBtn')
+
+        // Set judul modal berdasarkan tipe
+        const titles = {
+          pekerjaan: 'Detail Pekerjaan',
+          users: 'Detail Users',
+          tenda: 'Detail Tenda Terpasang',
+          panggung: 'Detail Panggung Terpasang',
+          gapura: 'Detail Gapura Terpasang'
+        }
+
+        modalTitle.textContent = titles[type] || 'Detail'
+        // console.log(type);
+        // console.log(titles[type]);
+        // Tampilkan loading
+        modalBody.innerHTML = '<div class="loading">Memuat data...</div>'
+        modal.style.display = 'flex'
+
+        try {
+          // Cek cache dulu
+          let data
+          const cacheKey = `detail_${type}`
+          // console.log(cacheKey)
+          // console.log(dataCache[cacheKey])
+          if (dataCache[cacheKey]) {
+            // console.log('Saya disini if ')
+            data = dataCache[cacheKey]
+            console.log(data)
+          } else {
+            // Ambil data dari API
+            const endpoint =
+              API_ENDPOINTS[
+                `detail${type.charAt(0).toUpperCase() + type.slice(1)}`
+              ] || API_ENDPOINTS.detailPekerjaan
+            // console.log(endpoint)
+            data = await fetchData(endpoint)
+            // console.log('Ambil data : ' + data)
+            // Simpan ke cache
+            // console.log(endpoint)
+            dataCache[cacheKey] = data
+          }
+
+          // Isi konten modal dengan data dari API
+          let content = ''
+          // console.log(data)
+          if (!data || data.length === 0) {
+            content =
+              '<div class="error">Tidak ada data untuk ditampilkan.</div>'
+          } else {
+            // Tampilkan maksimal 5 item
+            const itemsToShow = data.slice(0, 5)
+
+            itemsToShow.forEach(item => {
+              // Format data berdasarkan tipe
+              console.log('Type : ' + type)
+              console.log(item)
+
+              if (type === 'pekerjaan') {
+                content += `
                 <div class="list-item">
                   <div>
                     <strong>${item.pengguna || 'N/A'}</strong>
-                    ${item.status ? `<br><span>Status: ${item.status}</span>` : ''}
-                    ${item.tanggal_mulai ? `<br><span>Tanggal: ${item.tanggal_mulai}</span>` : ''}
+                    ${
+                      item.status
+                        ? `<br><span>Status: ${item.status}</span>`
+                        : ''
+                    }
+                    ${
+                      item.tanggal_mulai
+                        ? `<br><span>Tanggal: ${item.tanggal_mulai}</span>`
+                        : ''
+                    }
                   </div>
                   <div>
                     ${item.lokasi ? `<span>${item.lokasi}</span>` : ''}
                   </div>
                 </div>
-              `;
-            } else if (type === 'users') {
-              content += `
+              `
+              } else if (type === 'users') {
+                content += `
                 <div class="list-item">
                   <div>
                     <strong>${item.nama || item.username || 'N/A'}</strong>
@@ -301,106 +313,126 @@
                     ${item.role ? `<span>${item.role}</span>` : ''}
                   </div>
                 </div>
-              `;
-            } else {
-              // Untuk tenda, panggung, gapura
-              content += `
+              `
+              } else {
+                // Untuk tenda, panggung, gapura
+                content += `
                 <div class="list-item">
                   <div>
                     <strong>${item.pengguna || item.nama || 'N/A'}</strong>
-                    ${item.lokasi ? `<br><span>Lokasi: ${item.lokasi}</span>` : ''}
-                    ${item.tanggal ? `<br><span>Tanggal: ${item.tanggal}</span>` : ''}
+                    ${
+                      item.lokasi
+                        ? `<br><span>Lokasi: ${item.lokasi}</span>`
+                        : ''
+                    }
+                    ${
+                      item.tanggal
+                        ? `<br><span>Tanggal: ${item.tanggal}</span>`
+                        : ''
+                    }
                   </div>
                   <div>
-                    ${item.jumlah_unit ? `<span>${item.jumlah_unit} unit</span>` : ''}
+                    ${
+                      item.jumlah_unit
+                        ? `<span>${item.jumlah_unit} unit</span>`
+                        : ''
+                    }
                     ${item.status ? `<span>${item.status}</span>` : ''}
                   </div>
                 </div>
-              `;
+              `
+              }
+            })
+
+            // Jika ada lebih dari 5 item, tampilkan info
+            if (data.length > 5) {
+              content += `<p style="text-align: center; margin-top: 10px;">... dan ${
+                data.length - 5
+              } item lainnya</p>`
             }
-          });
-          
-          // Jika ada lebih dari 5 item, tampilkan info
-          if (data.length > 5) {
-            content += `<p style="text-align: center; margin-top: 10px;">... dan ${data.length - 5} item lainnya</p>`;
           }
+
+          modalBody.innerHTML = content
+        } catch (error) {
+          modalBody.innerHTML =
+            '<div class="error">Gagal memuat data. Silakan coba lagi.</div>'
+          console.error('Error loading detail data:', error)
         }
-        
-        modalBody.innerHTML = content;
-        
-      } catch (error) {
-        modalBody.innerHTML = '<div class="error">Gagal memuat data. Silakan coba lagi.</div>';
-        console.error('Error loading detail data:', error);
+
+        // Set URL untuk tombol "Lihat Semua"
+        const urls = {
+          pekerjaan: 'pekerjaan.html',
+          users: 'users.html',
+          tenda: 'detail_terpasang.html',
+          panggung: 'detail_terpasang.html',
+          gapura: 'detail_terpasang.html'
+        }
+
+        viewAllBtn.onclick = function () {
+          window.location.href = urls[type] || '#'
+        }
       }
-      
-      // Set URL untuk tombol "Lihat Semua"
-      const urls = {
-        pekerjaan: "pekerjaan.html",
-        users: "users.html",
-        tenda: "kerjaan.html?filter=tenda",
-        panggung: "kerjaan.html?filter=panggung",
-        gapura: "kerjaan.html?filter=gapura"
-      };
-      
-      viewAllBtn.onclick = function() {
-        window.location.href = urls[type] || "#";
-      };
-    }
 
-    // Event listener untuk menutup modal
-    document.querySelector('.modal-close').addEventListener('click', function() {
-      document.getElementById('detailModal').style.display = "none";
-    });
+      // Event listener untuk menutup modal
+      document
+        .querySelector('.modal-close')
+        .addEventListener('click', function () {
+          document.getElementById('detailModal').style.display = 'none'
+        })
 
-    // Event listener untuk menutup modal saat klik di luar konten
-    window.addEventListener('click', function(event) {
-      const modal = document.getElementById('detailModal');
-      if (event.target === modal) {
-        modal.style.display = "none";
+      // Event listener untuk menutup modal saat klik di luar konten
+      window.addEventListener('click', function (event) {
+        const modal = document.getElementById('detailModal')
+        if (event.target === modal) {
+          modal.style.display = 'none'
+        }
+      })
+
+      // Event listener untuk setiap card
+      document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', function () {
+          const type = this.getAttribute('data-type')
+          showDetailModal(type)
+        })
+      })
+
+      // Fungsi untuk memuat data statistik dashboard
+      async function loadDashboardStats() {
+        try {
+          // Load total pekerjaan
+          const pekerjaanData = await fetchData(API_ENDPOINTS.pekerjaan)
+          document.getElementById('totalPekerjaan').textContent =
+            pekerjaanData.length || 0
+
+          // Load total users
+          const usersData = await fetchData(API_ENDPOINTS.users)
+          document.getElementById('totalUsers').textContent =
+            usersData.length || 0
+
+          // Load total tenda
+          const tendaData = await fetchData(API_ENDPOINTS.tenda)
+          document.getElementById('totalTenda').textContent =
+            tendaData[0]?.total_jumlah_unit || 0
+
+          // Load total panggung
+          const panggungData = await fetchData(API_ENDPOINTS.panggung)
+          document.getElementById('totalPanggung').textContent =
+            panggungData[0]?.total_jumlah_unit || 0
+
+          // Load total gapura
+          const gapuraData = await fetchData(API_ENDPOINTS.gapura)
+          document.getElementById('totalGapura').textContent =
+            gapuraData[0]?.total_jumlah_unit || 0
+        } catch (error) {
+          console.error('Error loading dashboard stats:', error)
+          // Tetap tampilkan 0 jika ada error
+        }
       }
-    });
 
-    // Event listener untuk setiap card
-    document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('click', function() {
-        const type = this.getAttribute('data-type');
-        showDetailModal(type);
-      });
-    });
-
-    // Fungsi untuk memuat data statistik dashboard
-    async function loadDashboardStats() {
-      try {
-        // Load total pekerjaan
-        const pekerjaanData = await fetchData(API_ENDPOINTS.pekerjaan);
-        document.getElementById("totalPekerjaan").textContent = pekerjaanData.length || 0;
-
-        // Load total users
-        const usersData = await fetchData(API_ENDPOINTS.users);
-        document.getElementById("totalUsers").textContent = usersData.length || 0;
-
-        // Load total tenda
-        const tendaData = await fetchData(API_ENDPOINTS.tenda);
-        document.getElementById("totalTenda").textContent = tendaData[0]?.total_jumlah_unit || 0;
-
-        // Load total panggung
-        const panggungData = await fetchData(API_ENDPOINTS.panggung);
-        document.getElementById("totalPanggung").textContent = panggungData[0]?.total_jumlah_unit || 0;
-
-        // Load total gapura
-        const gapuraData = await fetchData(API_ENDPOINTS.gapura);
-        document.getElementById("totalGapura").textContent = gapuraData[0]?.total_jumlah_unit || 0;
-
-      } catch (error) {
-        console.error('Error loading dashboard stats:', error);
-        // Tetap tampilkan 0 jika ada error
-      }
-    }
-
-    // Muat data statistik saat halaman dimuat
-    document.addEventListener('DOMContentLoaded', function() {
-      loadDashboardStats();
-    });
-  </script>
-</body>
+      // Muat data statistik saat halaman dimuat
+      document.addEventListener('DOMContentLoaded', function () {
+        loadDashboardStats()
+      })
+    </script>
+  </body>
 </html>

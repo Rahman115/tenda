@@ -33,22 +33,4 @@ while ($row = $result->fetch_assoc()) {
 
 echo json_encode($jobs, JSON_PRETTY_PRINT);
 
-
-/**
-
-$result = $conn->query("SELECT SUM(d.jumlah_unit) as total_jumlah_unit
-FROM kerjaan AS k 
-LEFT JOIN detail_kerjaan AS d 
-    ON k.uuid = d.id_kerjaan 
-    AND d.jenis = ? 
-    AND d.status = 'ps'");
-
-$jobs = [];
-while ($row = $result->fetch_assoc()) {
-    $jobs[] = $row;
-}
-
-echo json_encode($jobs, JSON_PRETTY_PRINT);
-
-**/
 ?>

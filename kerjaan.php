@@ -11,8 +11,9 @@ $result = $conn->query("SELECT
     created_at,
     updated_at 
 FROM kerjaan 
-WHERE status_pembayaran = 'no'
 ORDER BY tanggal DESC");
+
+// WHERE status_pembayaran = 'no'
 
 $jobs = [];
 while ($row = $result->fetch_assoc()) {
