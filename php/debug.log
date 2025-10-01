@@ -1,366 +1,4 @@
-=== 2025-09-30 17:36:11 ===
-POST: Array
-(
-    [id_kerjaan] => 
-    [jenis] => tenda
-    [jumlah_unit] => 2.00
-    [status] => bkr
-    [jumlah_orang] => 5
-    [tanggal] => 2025-09-29
-    [uuid] => b2805854-9d2e-11f0-8219-8f13b2443d65
-)
-
-GET: Array
-(
-)
-
-Processed data: Array
-(
-    [id_kerjaan] => 
-    [jumlah_orang] => 5
-    [jenis] => tenda
-    [jumlah_unit] => 2.00
-    [status] => bkr
-    [tanggal] => 2025-09-29
-)
-
-=== 2025-09-30 17:39:10 ===
-POST: Array
-(
-    [id_kerjaan] => 5af0e30f-9b78-11f0-8bcf-3d449d4688d7
-    [jenis] => tenda
-    [jumlah_unit] => 2.00
-    [status] => bkr
-    [jumlah_orang] => 5
-    [tanggal] => 2025-09-29
-    [uuid] => b2805854-9d2e-11f0-8219-8f13b2443d65
-)
-
-GET: Array
-(
-)
-
-Processed data: Array
-(
-    [id_kerjaan] => 5af0e30f-9b78-11f0-8bcf-3d449d4688d7
-    [jumlah_orang] => 5
-    [jenis] => tenda
-    [jumlah_unit] => 2.00
-    [status] => bkr
-    [tanggal] => 2025-09-29
-)
-
-=== 2025-09-30 17:39:28 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 22
-=== 2025-09-30 17:39:38 ===
-Input: Array
-(
-    [kerjaan_uuid] => b2805854-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 2
-)
-
-kerjaan_uuid: b2805854-9d2e-11f0-8219-8f13b2443d65, user_id: 2
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 22
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '22' AND user_id = '2'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('9392f449-2d3d-41ad-919d-5e7153c9e203', '22', '2')
-Success: Data inserted
-=== 2025-09-30 17:39:39 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 22
-=== 2025-09-30 17:39:45 ===
-Input: Array
-(
-    [kerjaan_uuid] => b2805854-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 3
-)
-
-kerjaan_uuid: b2805854-9d2e-11f0-8219-8f13b2443d65, user_id: 3
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 22
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '22' AND user_id = '3'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('5102d506-65a6-4de7-8d42-bbe9380525d9', '22', '3')
-Success: Data inserted
-=== 2025-09-30 17:39:46 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 22
-=== 2025-09-30 17:39:54 ===
-Input: Array
-(
-    [kerjaan_uuid] => b2805854-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 4
-)
-
-kerjaan_uuid: b2805854-9d2e-11f0-8219-8f13b2443d65, user_id: 4
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 22
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '22' AND user_id = '4'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('c909b556-69c7-46d5-a551-c62431509006', '22', '4')
-Success: Data inserted
-=== 2025-09-30 17:39:54 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 22
-=== 2025-09-30 17:40:00 ===
-Input: Array
-(
-    [kerjaan_uuid] => b2805854-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 7
-)
-
-kerjaan_uuid: b2805854-9d2e-11f0-8219-8f13b2443d65, user_id: 7
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 22
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '22' AND user_id = '7'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('3016ce9f-6dbe-49e0-972e-8479cfc84c88', '22', '7')
-Success: Data inserted
-=== 2025-09-30 17:40:01 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 22
-=== 2025-09-30 17:40:04 ===
-Input: Array
-(
-    [kerjaan_uuid] => b2805854-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 8
-)
-
-kerjaan_uuid: b2805854-9d2e-11f0-8219-8f13b2443d65, user_id: 8
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 22
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '22' AND user_id = '8'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('9272110d-ad7b-496c-bdcc-a37f28e3fa19', '22', '8')
-Success: Data inserted
-=== 2025-09-30 17:40:05 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 22
-=== 2025-09-30 17:41:37 ===
-POST: Array
-(
-    [id_kerjaan] => 5af0e30f-9b78-11f0-8bcf-3d449d4688d7
-    [jenis] => gapura
-    [jumlah_unit] => 2
-    [status] => bkr
-    [jumlah_orang] => 5
-    [tanggal] => 2025-09-28
-    [uuid] => c4add2b3-9d2e-11f0-8219-8f13b2443d65
-)
-
-GET: Array
-(
-)
-
-Processed data: Array
-(
-    [id_kerjaan] => 5af0e30f-9b78-11f0-8bcf-3d449d4688d7
-    [jumlah_orang] => 5
-    [jenis] => gapura
-    [jumlah_unit] => 2
-    [status] => bkr
-    [tanggal] => 2025-09-28
-)
-
-=== 2025-09-30 17:41:57 ===
-POST: Array
-(
-    [id_kerjaan] => 5af0e30f-9b78-11f0-8bcf-3d449d4688d7
-    [jenis] => gapura
-    [jumlah_unit] => 1
-    [status] => bkr
-    [jumlah_orang] => 5
-    [tanggal] => 2025-09-28
-    [uuid] => c4add2b3-9d2e-11f0-8219-8f13b2443d65
-)
-
-GET: Array
-(
-)
-
-Processed data: Array
-(
-    [id_kerjaan] => 5af0e30f-9b78-11f0-8bcf-3d449d4688d7
-    [jumlah_orang] => 5
-    [jenis] => gapura
-    [jumlah_unit] => 1
-    [status] => bkr
-    [tanggal] => 2025-09-28
-)
-
-=== 2025-09-30 17:42:08 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 23
-=== 2025-09-30 17:42:14 ===
-Input: Array
-(
-    [kerjaan_uuid] => c4add2b3-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 2
-)
-
-kerjaan_uuid: c4add2b3-9d2e-11f0-8219-8f13b2443d65, user_id: 2
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 23
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '23' AND user_id = '2'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('77b4bfe1-5d47-441e-8211-72271d1d9ee9', '23', '2')
-Success: Data inserted
-=== 2025-09-30 17:42:15 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 23
-=== 2025-09-30 17:42:21 ===
-Input: Array
-(
-    [kerjaan_uuid] => c4add2b3-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 3
-)
-
-kerjaan_uuid: c4add2b3-9d2e-11f0-8219-8f13b2443d65, user_id: 3
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 23
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '23' AND user_id = '3'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('2c75ed9b-6a47-448d-9be7-27841c3cf2f6', '23', '3')
-Success: Data inserted
-=== 2025-09-30 17:42:22 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 23
-=== 2025-09-30 17:42:26 ===
-Input: Array
-(
-    [kerjaan_uuid] => c4add2b3-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 4
-)
-
-kerjaan_uuid: c4add2b3-9d2e-11f0-8219-8f13b2443d65, user_id: 4
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 23
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '23' AND user_id = '4'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('da685ca5-0217-4ba3-9df4-b01500c40309', '23', '4')
-Success: Data inserted
-=== 2025-09-30 17:42:27 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 23
-=== 2025-09-30 17:42:31 ===
-Input: Array
-(
-    [kerjaan_uuid] => c4add2b3-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 7
-)
-
-kerjaan_uuid: c4add2b3-9d2e-11f0-8219-8f13b2443d65, user_id: 7
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 23
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '23' AND user_id = '7'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('fc1f5d1a-59c0-4be0-b8c7-5def4d192370', '23', '7')
-Success: Data inserted
-=== 2025-09-30 17:42:32 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 23
-=== 2025-09-30 17:42:36 ===
-Input: Array
-(
-    [kerjaan_uuid] => c4add2b3-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 8
-)
-
-kerjaan_uuid: c4add2b3-9d2e-11f0-8219-8f13b2443d65, user_id: 8
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 23
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '23' AND user_id = '8'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('e82f556b-8389-4062-8cb5-cb768430fd80', '23', '8')
-Success: Data inserted
-=== 2025-09-30 17:42:36 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'c4add2b3-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 23
-=== 2025-09-30 17:42:43 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'b2805854-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 22
-=== 2025-09-30 17:42:48 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 21
-=== 2025-09-30 17:42:52 ===
-Input: Array
-(
-    [kerjaan_uuid] => a652033f-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 2
-)
-
-kerjaan_uuid: a652033f-9d2e-11f0-8219-8f13b2443d65, user_id: 2
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 21
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '21' AND user_id = '2'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('aca5d382-d1ae-4be4-ac54-1bdf2dcdc035', '21', '2')
-Success: Data inserted
-=== 2025-09-30 17:42:54 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 21
-=== 2025-09-30 17:42:57 ===
-Input: Array
-(
-    [kerjaan_uuid] => a652033f-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 3
-)
-
-kerjaan_uuid: a652033f-9d2e-11f0-8219-8f13b2443d65, user_id: 3
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 21
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '21' AND user_id = '3'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('685d9f7b-4e51-44b3-8388-d9283fa4ec19', '21', '3')
-Success: Data inserted
-=== 2025-09-30 17:42:58 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 21
-=== 2025-09-30 17:43:01 ===
-Input: Array
-(
-    [kerjaan_uuid] => a652033f-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 4
-)
-
-kerjaan_uuid: a652033f-9d2e-11f0-8219-8f13b2443d65, user_id: 4
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 21
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '21' AND user_id = '4'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('a65a94c5-084b-4325-8247-89398c18caa4', '21', '4')
-Success: Data inserted
-=== 2025-09-30 17:43:02 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 21
-=== 2025-09-30 17:43:05 ===
-Input: Array
-(
-    [kerjaan_uuid] => a652033f-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 7
-)
-
-kerjaan_uuid: a652033f-9d2e-11f0-8219-8f13b2443d65, user_id: 7
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 21
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '21' AND user_id = '7'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('7f66c59e-0234-45b8-abfa-51d800c7c656', '21', '7')
-Success: Data inserted
-=== 2025-09-30 17:43:06 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 21
-=== 2025-09-30 17:43:08 ===
-Input: Array
-(
-    [kerjaan_uuid] => a652033f-9d2e-11f0-8219-8f13b2443d65
-    [user_id] => 8
-)
-
-kerjaan_uuid: a652033f-9d2e-11f0-8219-8f13b2443d65, user_id: 8
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 21
-Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '21' AND user_id = '8'
-Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('b158725a-194d-4661-9821-142707740493', '21', '8')
-Success: Data inserted
-=== 2025-09-30 17:43:09 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = 'a652033f-9d2e-11f0-8219-8f13b2443d65'
-kerjaan_id found: 21
-=== 2025-09-30 17:43:13 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '7365e83c-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 17
-=== 2025-09-30 17:43:16 ===
-Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '69cfffce-9b78-11f0-8bcf-3d449d4688d7'
-kerjaan_id found: 16
-=== 2025-10-01 01:03:27 ===
+=== 2025-10-01 04:28:16 ===
 POST: Array
 (
 )
@@ -370,7 +8,16 @@ GET: Array
     [job_uuid] => e930463e-9d2d-11f0-8219-8f13b2443d65
 )
 
-=== 2025-10-01 03:38:25 ===
+Input: Array
+(
+    [pengguna] => smp2 kulisusu
+    [lokasi] => Bone
+    [status_pembayaran] => no
+    [tanggal] => 2025-09-29
+)
+
+Output 1
+=== 2025-10-01 04:30:56 ===
 POST: Array
 (
 )
@@ -380,3 +27,383 @@ GET: Array
     [job_uuid] => e930463e-9d2d-11f0-8219-8f13b2443d65
 )
 
+Input: Array
+(
+    [pengguna] => smp4 kulisusu
+    [lokasi] => Bone
+    [status_pembayaran] => no
+    [tanggal] => 2025-09-29
+)
+
+Output Array
+(
+    [pengguna] => smp4 kulisusu
+    [lokasi] => Bone
+    [status_pembayaran] => no
+    [tanggal] => 2025-09-29
+)
+
+=== 2025-10-01 04:39:04 ===
+POST: Array
+(
+)
+
+GET: Array
+(
+    [job_uuid] => e930463e-9d2d-11f0-8219-8f13b2443d65
+)
+
+Input: Array
+(
+    [pengguna] => smp4 kulisusu
+    [lokasi] => Bone
+    [status_pembayaran] => no
+    [tanggal] => 2025-09-29
+)
+
+Output Array
+(
+    [pengguna] => smp4 kulisusu
+    [lokasi] => Bone
+    [status_pembayaran] => no
+    [tanggal] => 2025-09-29
+)
+
+=== 2025-10-01 04:42:52 ===
+POST: Array
+(
+)
+
+GET: Array
+(
+    [job_uuid] => e930463e-9d2d-11f0-8219-8f13b2443d65
+)
+
+Input: Array
+(
+    [pengguna] => smp2 kulisusu
+    [lokasi] => Bone
+    [status_pembayaran] => no
+    [tanggal] => 2025-09-29
+)
+
+Output Array
+(
+    [pengguna] => smp2 kulisusu
+    [lokasi] => Bone
+    [status_pembayaran] => no
+    [tanggal] => 2025-09-29
+)
+
+=== 2025-10-01 04:53:29 ===
+Raw Input: {"pengguna":"smp4 kulisusu","lokasi":"Bone","status_pembayaran":"no","tanggal":"2025-09-29"}
+Parsed Input: Array
+(
+    [pengguna] => smp4 kulisusu
+    [lokasi] => Bone
+    [status_pembayaran] => no
+    [tanggal] => 2025-09-29
+)
+
+UUID from GET: e930463e-9d2d-11f0-8219-8f13b2443d65
+Update executed: success
+Rows affected: 0
+=== 2025-10-01 04:53:48 ===
+Raw Input: {"pengguna":"smp2 kulisusu","lokasi":"Bone","status_pembayaran":"no","tanggal":"2025-09-29"}
+Parsed Input: Array
+(
+    [pengguna] => smp2 kulisusu
+    [lokasi] => Bone
+    [status_pembayaran] => no
+    [tanggal] => 2025-09-29
+)
+
+UUID from GET: e930463e-9d2d-11f0-8219-8f13b2443d65
+Update executed: success
+Rows affected: 1
+=== 2025-10-01 04:54:09 ===
+Raw Input: {"pengguna":"smp 2 kulisusu","lokasi":"Bone","status_pembayaran":"no","tanggal":"2025-09-29"}
+Parsed Input: Array
+(
+    [pengguna] => smp 2 kulisusu
+    [lokasi] => Bone
+    [status_pembayaran] => no
+    [tanggal] => 2025-09-29
+)
+
+UUID from GET: e930463e-9d2d-11f0-8219-8f13b2443d65
+Update executed: success
+Rows affected: 1
+=== 2025-10-01 04:55:09 ===
+Raw Input: {"pengguna":"SMA 1","lokasi":"Tasau'Ea","status_pembayaran":"yes","tanggal":"2025-09-25"}
+Parsed Input: Array
+(
+    [pengguna] => SMA 1
+    [lokasi] => Tasau'Ea
+    [status_pembayaran] => yes
+    [tanggal] => 2025-09-25
+)
+
+UUID from GET: 5af0e30f-9b78-11f0-8bcf-3d449d4688d7
+Update executed: success
+Rows affected: 1
+=== 2025-10-01 05:17:47 ===
+Raw Input: {"pengguna":"PMI","lokasi":"Mina-minanga","status_pembayaran":"no","tanggal":"2025-09-23"}
+Parsed Input: Array
+(
+    [pengguna] => PMI
+    [lokasi] => Mina-minanga
+    [status_pembayaran] => no
+    [tanggal] => 2025-09-23
+)
+
+UUID from GET: e095ac99-9a3a-11f0-86c8-2f058cafc7d9
+Update executed: success
+Rows affected: 1
+=== 2025-10-01 05:28:29 ===
+Raw Input: {"pengguna":"Arman Ani","lokasi":"Lingkudu","status_pembayaran":"yes","tanggal":"2025-09-10"}
+Parsed Input: Array
+(
+    [pengguna] => Arman Ani
+    [lokasi] => Lingkudu
+    [status_pembayaran] => yes
+    [tanggal] => 2025-09-10
+)
+
+UUID from GET: fda5e44f-977e-11f0-b5ce-239da9796382
+Update executed: success
+Rows affected: 1
+=== 2025-10-01 05:28:44 ===
+Raw Input: {"pengguna":"rumah riati","lokasi":"Wandaka","status_pembayaran":"yes","tanggal":"2025-09-15"}
+Parsed Input: Array
+(
+    [pengguna] => rumah riati
+    [lokasi] => Wandaka
+    [status_pembayaran] => yes
+    [tanggal] => 2025-09-15
+)
+
+UUID from GET: 24ead4f0-9781-11f0-b5ce-239da9796382
+Update executed: success
+Rows affected: 1
+=== 2025-10-01 05:33:05 ===
+Raw Input: {"pengguna":"Nganga Buaya","lokasi":"Ereke","status_pembayaran":"yes","tanggal":"2025-09-25"}
+Parsed Input: Array
+(
+    [pengguna] => Nganga Buaya
+    [lokasi] => Ereke
+    [status_pembayaran] => yes
+    [tanggal] => 2025-09-25
+)
+
+UUID from GET: e58c3898-9dc9-11f0-91db-4e8fe5cb4b15
+Update executed: success
+Rows affected: 1
+=== 2025-10-01 05:33:33 ===
+Raw Input: {"pengguna":"SMP 3","lokasi":"Lipu","status_pembayaran":"yes","tanggal":"2025-09-18"}
+Parsed Input: Array
+(
+    [pengguna] => SMP 3
+    [lokasi] => Lipu
+    [status_pembayaran] => yes
+    [tanggal] => 2025-09-18
+)
+
+UUID from GET: 24eb0385-9781-11f0-b5ce-239da9796382
+Update executed: success
+Rows affected: 1
+=== 2025-10-01 05:33:42 ===
+Raw Input: {"pengguna":"la sudir","lokasi":"Geresa","status_pembayaran":"yes","tanggal":"2025-09-18"}
+Parsed Input: Array
+(
+    [pengguna] => la sudir
+    [lokasi] => Geresa
+    [status_pembayaran] => yes
+    [tanggal] => 2025-09-18
+)
+
+UUID from GET: 24eafebd-9781-11f0-b5ce-239da9796382
+Update executed: success
+Rows affected: 1
+=== 2025-10-01 05:34:26 ===
+POST: Array
+(
+    [id_kerjaan] => 10003348-9d2f-11f0-8219-8f13b2443d65
+    [jenis] => gapura
+    [jumlah_unit] => 2
+    [status] => bkr
+    [jumlah_orang] => 5
+    [tanggal] => 2025-10-01
+)
+
+GET: Array
+(
+)
+
+=== 2025-10-01 05:34:38 ===
+POST: Array
+(
+    [id_kerjaan] => 10003348-9d2f-11f0-8219-8f13b2443d65
+    [jenis] => gapura
+    [jumlah_unit] => 2
+    [status] => bkr
+    [jumlah_orang] => 5
+    [tanggal] => 2025-10-01
+)
+
+GET: Array
+(
+)
+
+=== 2025-10-01 05:38:37 ===
+POST: Array
+(
+    [id_kerjaan] => 10003348-9d2f-11f0-8219-8f13b2443d65
+    [jenis] => gapura
+    [jumlah_unit] => 2
+    [status] => bkr
+    [jumlah_orang] => 5
+    [tanggal] => 2025-10-01
+)
+
+GET: Array
+(
+)
+
+=== 2025-10-01 05:41:19 ===
+POST: Array
+(
+    [id_kerjaan] => 10003348-9d2f-11f0-8219-8f13b2443d65
+    [jenis] => gapura
+    [jumlah_unit] => 2
+    [status] => bkr
+    [jumlah_orang] => 2
+    [tanggal] => 2025-10-01
+)
+
+GET: Array
+(
+)
+
+Processed data: Array
+(
+    [id_kerjaan] => 10003348-9d2f-11f0-8219-8f13b2443d65
+    [jumlah_orang] => 2
+    [jenis] => gapura
+    [jumlah_unit] => 2
+    [status] => bkr
+    [tanggal] => 2025-10-01
+)
+
+=== 2025-10-01 05:41:33 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '27b23bdb-9e87-11f0-ba0f-2fd2905c1a70'
+kerjaan_id found: 27
+=== 2025-10-01 05:41:36 ===
+Input: Array
+(
+    [kerjaan_uuid] => 27b23bdb-9e87-11f0-ba0f-2fd2905c1a70
+    [user_id] => 2
+)
+
+kerjaan_uuid: 27b23bdb-9e87-11f0-ba0f-2fd2905c1a70, user_id: 2
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '27b23bdb-9e87-11f0-ba0f-2fd2905c1a70'
+kerjaan_id found: 27
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '27' AND user_id = '2'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('4c9c6bd0-d832-4c90-8ea7-ce4cbf65289f', '27', '2')
+Success: Data inserted
+=== 2025-10-01 05:41:37 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '27b23bdb-9e87-11f0-ba0f-2fd2905c1a70'
+kerjaan_id found: 27
+=== 2025-10-01 05:41:41 ===
+Input: Array
+(
+    [kerjaan_uuid] => 27b23bdb-9e87-11f0-ba0f-2fd2905c1a70
+    [user_id] => 3
+)
+
+kerjaan_uuid: 27b23bdb-9e87-11f0-ba0f-2fd2905c1a70, user_id: 3
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '27b23bdb-9e87-11f0-ba0f-2fd2905c1a70'
+kerjaan_id found: 27
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '27' AND user_id = '3'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('40b60a47-850d-4f0d-9e32-797670fad446', '27', '3')
+Success: Data inserted
+=== 2025-10-01 05:41:42 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '27b23bdb-9e87-11f0-ba0f-2fd2905c1a70'
+kerjaan_id found: 27
+=== 2025-10-01 05:41:45 ===
+Input: Array
+(
+    [kerjaan_uuid] => 27b23bdb-9e87-11f0-ba0f-2fd2905c1a70
+    [user_id] => 4
+)
+
+kerjaan_uuid: 27b23bdb-9e87-11f0-ba0f-2fd2905c1a70, user_id: 4
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '27b23bdb-9e87-11f0-ba0f-2fd2905c1a70'
+kerjaan_id found: 27
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '27' AND user_id = '4'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('4cca53b5-1bfa-4b01-883a-a512301c433b', '27', '4')
+Success: Data inserted
+=== 2025-10-01 05:41:46 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '27b23bdb-9e87-11f0-ba0f-2fd2905c1a70'
+kerjaan_id found: 27
+=== 2025-10-01 05:41:53 ===
+Input: Array
+(
+    [kerjaan_uuid] => 27b23bdb-9e87-11f0-ba0f-2fd2905c1a70
+    [user_id] => 7
+)
+
+kerjaan_uuid: 27b23bdb-9e87-11f0-ba0f-2fd2905c1a70, user_id: 7
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '27b23bdb-9e87-11f0-ba0f-2fd2905c1a70'
+kerjaan_id found: 27
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '27' AND user_id = '7'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('ef6fd4bb-792c-46a5-8285-8a4b7198fcc3', '27', '7')
+Success: Data inserted
+=== 2025-10-01 05:41:54 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '27b23bdb-9e87-11f0-ba0f-2fd2905c1a70'
+kerjaan_id found: 27
+=== 2025-10-01 05:41:57 ===
+Input: Array
+(
+    [kerjaan_uuid] => 27b23bdb-9e87-11f0-ba0f-2fd2905c1a70
+    [user_id] => 8
+)
+
+kerjaan_uuid: 27b23bdb-9e87-11f0-ba0f-2fd2905c1a70, user_id: 8
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '27b23bdb-9e87-11f0-ba0f-2fd2905c1a70'
+kerjaan_id found: 27
+Check SQL: SELECT id FROM pekerja WHERE kerjaan_id = '27' AND user_id = '8'
+Insert SQL: INSERT INTO pekerja (uuid, kerjaan_id, user_id) VALUES ('289035f1-92bc-4e89-864e-f9d5bc7a5025', '27', '8')
+Success: Data inserted
+=== 2025-10-01 05:41:58 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '27b23bdb-9e87-11f0-ba0f-2fd2905c1a70'
+kerjaan_id found: 27
+=== 2025-10-01 05:42:09 ===
+Check SQL: SELECT id FROM detail_kerjaan WHERE uuid = '1d9d8cfd-9d2f-11f0-8219-8f13b2443d65'
+kerjaan_id found: 24
+=== 2025-10-01 05:42:29 ===
+Raw Input: {"pengguna":"Aloo","lokasi":"Jauhari","status_pembayaran":"yes","tanggal":"2025-09-28"}
+Parsed Input: Array
+(
+    [pengguna] => Aloo
+    [lokasi] => Jauhari
+    [status_pembayaran] => yes
+    [tanggal] => 2025-09-28
+)
+
+UUID from GET: 10003348-9d2f-11f0-8219-8f13b2443d65
+Update executed: success
+Rows affected: 1
+=== 2025-10-01 05:42:43 ===
+Raw Input: {"pengguna":"papa rin","lokasi":"Wandaka","status_pembayaran":"yes","tanggal":"2025-09-18"}
+Parsed Input: Array
+(
+    [pengguna] => papa rin
+    [lokasi] => Wandaka
+    [status_pembayaran] => yes
+    [tanggal] => 2025-09-18
+)
+
+UUID from GET: 24eb04c7-9781-11f0-b5ce-239da9796382
+Update executed: success
+Rows affected: 1

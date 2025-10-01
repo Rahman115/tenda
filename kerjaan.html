@@ -19,7 +19,6 @@
     <a href="dashboard.html">Dashboard</a>
     <a href="users.html">Users</a>
     <a href="kerjaan.html" class="active">Kerjaan</a>
-    <a href="pekerjaan.html">Pekerjaan</a>
   </nav>
   
   <div class="container">
@@ -114,7 +113,7 @@
 
 
 
-<!-- Modal untuk Tambah Pekerjaan -->
+<!-- Modal untuk Edit Pekerjaan -->
 <div id="editJobsModal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
@@ -512,13 +511,15 @@ function closeEditJobsModal() {
 
 // Fungsi untuk menampilkan modal edit pekerjaan dengan data yang akan diedit
 function showEditJobModal(jobId, jobData) {
+    console.log('Opening edit modal for job:', jobId, jobData);
+    
     // Isi form dengan data yang ada
     document.getElementById('edit_pengguna').value = jobData.pengguna || '';
     document.getElementById('edit_lokasi').value = jobData.lokasi || '';
     document.getElementById('edit_status_pembayaran').value = jobData.status_pembayaran || '';
     document.getElementById('edit_tanggal_job').value = jobData.tanggal || '';
     
-    // Simpan ID pekerjaan yang sedang diedit (bisa ditambahkan sebagai hidden input)
+    // Simpan ID pekerjaan yang sedang diedit
     const form = document.getElementById('editJobsForm');
     form.setAttribute('data-edit-id', jobId);
     
@@ -541,16 +542,24 @@ function editJobForm(event) {
         status_pembayaran: document.getElementById('edit_status_pembayaran').value,
         tanggal: document.getElementById('edit_tanggal_job').value
     };
-    console.log('job ID: ' + jobId);
-    console.log('form data : ' + formData);
+    
+    console.log('job ID:', jobId);
+    console.log('form data:', formData);
+    
     // Validasi form
     if (!formData.pengguna || !formData.lokasi || !formData.status_pembayaran || !formData.tanggal) {
         alert('Harap lengkapi semua field!');
         return;
     }
     
-    // Kirim data ke server (contoh dengan fetch API)
-    fetch(`php/job_save.php?job_uuid=${jobId}`, {
+    // Validasi jobId
+    if (!jobId) {
+        alert('Error: ID pekerjaan tidak ditemukan');
+        return;
+    }
+    
+    // Kirim data ke server
+    fetch(`php/job_update.php?job_uuid=${encodeURIComponent(jobId)}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -558,24 +567,30 @@ function editJobForm(event) {
         body: JSON.stringify(formData)
     })
     .then(response => {
+        console.log('Response status:', response.status);
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
         return response.json();
     })
     .then(data => {
-        // Tutup modal setelah berhasil
-        closeEditJobsModal();
-        
-        // Tampilkan pesan sukses
-        alert('Data pekerjaan berhasil diperbarui!');
-        
-        // Refresh data tabel atau update UI
-        refreshJobsTable();
+        console.log('Response data:', data);
+        if (data.success) {
+            // Tutup modal setelah berhasil
+            closeEditJobsModal();
+            
+            // Tampilkan pesan sukses
+            alert('Data pekerjaan berhasil diperbarui!');
+            
+            // Refresh data tabel atau update UI
+            refreshJobsTable();
+        } else {
+            alert('Gagal mengupdate data: ' + data.message);
+        }
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Terjadi kesalahan saat mengupdate data');
+        alert('Terjadi kesalahan saat mengupdate data: ' + error.message);
     });
 }
 
@@ -604,7 +619,7 @@ function refreshJobsTable() {
     console.log('Refreshing jobs table...');
     
     // Jika menggunakan AJAX untuk load data:
-    // loadJobsData();
+    loadJobs();
 }
 
 // Contoh fungsi untuk mendapatkan data pekerjaan (sesuaikan dengan kebutuhan)

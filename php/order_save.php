@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-include 'config.php';
+include '../config.php';
 
 // Enable error reporting untuk debugging
 error_reporting(E_ALL);

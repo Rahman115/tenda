@@ -2,7 +2,17 @@
 
 require ('config.php');
 
-$result = $conn->query("select uuid,pengguna,lokasi,tanggal,status_pembayaran, created_at, updated_at from kerjaan order by tanggal desc");
+$result = $conn->query("SELECT 
+    uuid,
+    pengguna,
+    lokasi,
+    tanggal,
+    status_pembayaran,
+    created_at,
+    updated_at 
+FROM kerjaan 
+WHERE status_pembayaran = 'no'
+ORDER BY tanggal DESC");
 
 $jobs = [];
 while ($row = $result->fetch_assoc()) {

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Terpasang</title>
+  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <script>
+    // Inisialisasi Eruda
+    eruda.init();
+    console.log('Eruda initialized');
+  </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            color: white;
+            padding: 20px 0;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .back-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .filter-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .filter-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: #f1f5f9;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .filter-btn.active {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .filter-btn:hover:not(.active) {
+            background-color: #e2e8f0;
+        }
+
+        .content-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-header {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #4a6491, #2c3e50);
+            color: white;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-count {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .item-details {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .item-status {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .item-count {
+            font-weight: 600;
+            color: #3b82f6;
+        }
+
+        .item-date {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 3px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: #64748b;
+        }
+
+        .error {
+            text-align: center;
+            padding: 30px;
+            color: #ef4444;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #64748b;
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #cbd5e1;
+        }
+
+        .view-all-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #f1f5f9;
+            color: #475569;
+            border: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .view-all-btn:hover {
+            background-color: #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .content-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Detail Barang Terpasang</h1>
+                <button class="back-btn" onclick="goBack()">Kembali ke Dashboard</button>
+            </div>
+        </header>
+
+        <section class="filter-section">
+            <h2 class="filter-title">Filter Data</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-type="all">Semua</button>
+                <button class="filter-btn" data-type="tenda">Tenda</button>
+                <button class="filter-btn" data-type="panggung">Panggung</button>
+                <button class="filter-btn" data-type="gapura">Gapura</button>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <!-- Tenda Card -->
+            <div class="card" data-type="tenda">
+                <div class="card-header">
+                    <div class="card-title">
+                        Tenda Terpasang
+                        <span class="card-count">5</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                  <div id="list-item"></div>
+                    <div class="list-item">
+                        <div class="item-info">
+                            <div class="item-name">PT. Maju Jaya</div>
+                            <div class="item-details">Lokasi: Jl. Sudirman No. 123</div>
+                        </div>
+                        <div class="item-status">
+                            <div class="item-count">3 unit</div>
+                            <div class="item-date">15 Okt 2023</div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="item-info">
+                            <div class="item-name">Acara Pernikahan</div>
+                            <div class="item-details">Lokasi: Gedung Serbaguna</div>
+                        </div>
+                        <div class="item-status">
+                            <div class="item-count">2 unit</div>
+                            <div class="item-date">20 Okt 2023</div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="item-info">
+                            <div class="item-name">Seminar Nasional</div>
+                            <div class="item-details">Lokasi: Universitas Indonesia</div>
+                        </div>
+                        <div class="item-status">
+                            <div class="item-count">5 unit</div>
+                            <div class="item-date">25 Okt 2023</div>
+                        </div>
+                    </div>
+                    <button class="view-all-btn">Lihat Semua Tenda</button>
+                </div>
+            </div>
+
+            <!-- Panggung Card -->
+            <div class="card" data-type="panggung">
+                <div class="card-header">
+                    <div class="card-title">
+                        Panggung Terpasang
+                        <span class="card-count">3</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="list-item">
+                        <div class="item-info">
+                            <div class="item-name">Konser Musik</div>
+                            <div class="item-details">Lokasi: Lapangan Merdeka</div>
+                        </div>
+                        <div class="item-status">
+                            <div class="item-count">1 unit</div>
+                            <div class="item-date">12 Okt 2023</div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="item-info">
+                            <div class="item-name">Festival Budaya</div>
+                            <div class="item-details">Lokasi: Taman Kota</div>
+                        </div>
+                        <div class="item-status">
+                            <div class="item-count">1 unit</div>
+                            <div class="item-date">18 Okt 2023</div>
+                        </div>
+                    </div>
+                    <button class="view-all-btn">Lihat Semua Panggung</button>
+                </div>
+            </div>
+
+            <!-- Gapura Card -->
+            <div class="card" data-type="gapura">
+                <div class="card-header">
+                    <div class="card-title">
+                        Gapura Terpasang
+                        <span class="card-count">4</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="list-item">
+                        <div class="item-info">
+                            <div class="item-name">HUT Kota</div>
+                            <div class="item-details">Lokasi: Jl. Protokol</div>
+                        </div>
+                        <div class="item-status">
+                            <div class="item-count">2 unit</div>
+                            <div class="item-date">10 Okt 2023</div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="item-info">
+                            <div class="item-name">Peresmian Gedung</div>
+                            <div class="item-details">Lokasi: Kantor Walikota</div>
+                        </div>
+                        <div class="item-status">
+                            <div class="item-count">1 unit</div>
+                            <div class="item-date">22 Okt 2023</div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="item-info">
+                            <div class="item-name">Festival Kuliner</div>
+                            <div class="item-details">Lokasi: Alun-alun</div>
+                        </div>
+                        <div class="item-status">
+                            <div class="item-count">1 unit</div>
+                            <div class="item-date">28 Okt 2023</div>
+                        </div>
+                    </div>
+                    <button class="view-all-btn">Lihat Semua Gapura</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        
+        function loadTenda(){
+          fetch("php/api_kerjaan.php?action=list&jenis=tenda")
+            .then(res => res.json())
+            .then(data => {
+              let list = document.getElementById("list-item");
+  list.innerHTML = "";
+  
+  data.forEach(job => {
+  console.log(job.pengguna);  
+  });
+            })
+            .catch(err => console.error(err));
+        }
+        
+        loadTenda();
+        // Fungsi untuk kembali ke dashboard
+        function goBack() {
+            window.location.href = "dashboard.html";
+        }
+
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterType = this.getAttribute('data-type');
+                    
+                    // Show/hide cards based on filter
+                    cards.forEach(card => {
+                        if (filterType === 'all') {
+                            card.style.display = 'block';
+                        } else {
+                            if (card.getAttribute('data-type') === filterType) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // View all buttons functionality
+            const viewAllButtons = document.querySelectorAll('.view-all-btn');
+            viewAllButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const card = this.closest('.card');
+                    const type = card.getAttribute('data-type');
+                    
+                    // Redirect to appropriate page based on type
+                    const urls = {
+                        tenda: "kerjaan.html?filter=tenda",
+                        panggung: "kerjaan.html?filter=panggung",
+                        gapura: "kerjaan.html?filter=gapura"
+                    };
+                    
+                    if (urls[type]) {
+                        window.location.href = urls[type];
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

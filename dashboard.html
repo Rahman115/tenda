@@ -143,7 +143,6 @@
     <a href="dashboard.html" class="active">Dashboard</a>
     <a href="users.html">Users</a>
     <a href="kerjaan.html">Kerjaan</a>
-    <a href="pekerjaan.html">Pekerjaan</a>
   </nav>
 
   <div class="container">
@@ -255,7 +254,6 @@
           console.log(data);
         } else {
           // Ambil data dari API
-          console.log('Saya disini else ');
           const endpoint = API_ENDPOINTS[`detail${type.charAt(0).toUpperCase() + type.slice(1)}`] || API_ENDPOINTS.detailPekerjaan;
           console.log(endpoint);
           data = await fetchData(endpoint);
