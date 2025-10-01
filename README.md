@@ -1,4 +1,4 @@
-# Dokumentasi SI Tenda
+# Dokumentasi Sistem Informasi Tenda
 
 Sistem Informasi Tenda adalah sebuah platform layanan penyewaan tenda bongkar pasang yang berkedudukan di Kabupaten Buton Utara. Fokus utama kami adalah menyediakan kebutuhan tenda untuk berbagai acara, mulai dari hajatan keluarga, kegiatan pemerintahan, acara adat, hingga kegiatan sosial masyarakat.
 
@@ -18,6 +18,89 @@ Dengan sistem informasi yang terintegrasi, pengelolaan penyewaan dilakukan lebih
 - **Framework**: -
 - **Server**: Apache / Server
 - **Database**: MySQL Mariadb
+
+## 📁 Struktur Direktori
+
+```
+
+si-tenda/
+├──app/
+│├── Config/
+││   ├── config.php
+││   ├── Database.php
+││   └── Routes.php
+│├── Controllers/
+││   ├── Home.php
+││   ├── Auth.php
+││   ├── Tent.php
+││   ├── Rental.php
+││   └── Customer.php
+│├── Models/
+││   ├── UserModel.php
+││   ├── TentModel.php
+││   ├── RentalModel.php
+││   └── CustomerModel.php
+│├── Views/
+││   ├── templates/
+││   │   ├── header.php
+││   │   ├── footer.php
+││   │   └── sidebar.php
+││   ├── auth/
+││   ├── tent/
+││   ├── rental/
+││   └── customer/
+│└── Database/
+│├── Migrations/
+│└── Seeds/
+├──public/
+│├── index.php
+│├── assets/
+││   ├── css/
+││   │   ├── style.css
+││   │   ├── bootstrap.min.css
+││   │   └── custom.css
+││   ├── js/
+││   │   ├── script.js
+││   │   ├── bootstrap.bundle.min.js
+││   │   ├── chart.js
+││   │   └── rental.js
+││   └── images/
+││       ├── logo.png
+││       └── favicon.ico
+│└── uploads/
+│├── tents/
+│└── customers/
+├──system/
+├──writable/
+├──tests/
+├──env
+├──.gitignore
+├──composer.json
+├──composer.lock
+└──README.md
+
+```
+
+## 📋 Deskripsi File Utama
+
+### Konfigurasi
+- **config.php** - Konfigurasi utama aplikasi
+- **Database.php** - Konfigurasi koneksi database
+- **Routes.php** - Definisi routing aplikasi
+
+### File Entry Point
+- **index.php** - File utama yang menangani semua request
+
+### Assets
+- **style.css** - Stylesheet utama untuk styling
+- **script.js** - JavaScript utama untuk interaksi
+- **rental.js** - JavaScript khusus modul penyewaan
+
+### PHP Classes
+- **Controllers/** - Menangani logika request dan response
+- **Models/** - Menangani interaksi dengan database
+- **Views/** - Template tampilan untuk user interface
+
 
 ## 📋 Prasyarat Sistem
 
@@ -48,15 +131,12 @@ Dengan sistem informasi yang terintegrasi, pengelolaan penyewaan dilakukan lebih
    php -S 127.0.0.1:8080
    ```
 
-
-## 🗃️ Struktur Database
-
 ### Tabel Utama
 
 - **users** - Data pengguna sistem
-- **customers** - Data pelanggan
-- **tents** - Data inventory tenda
-- **rentals** - Data transaksi penyewaan
+- **pekerja** - Data users melakukan kerjaan
+- **kerjaan** - Data pelanggan
+- **detail_kerjaan** - Data detail penyewaan
 - **payments** - Data pembayaran
 
 
@@ -77,6 +157,9 @@ mysql -u root tenda < backup.sql
 ### Query Penting
 
 ```sql
+-- Mengimport database dalam mysql
+SOURCE backup.sql;
+
 -- Melihat data penyewaan aktif
 SELECT * FROM rentals WHERE status = 'active';
 
@@ -93,7 +176,7 @@ GROUP BY MONTH(created_at);
 ## 👥 Pengguna Sistem
 
 - **Admin** - Mengelola seluruh sistem dan laporan
-- **Operator** - Memproses pemesanan dan transaksi
+- **user** - Memproses pekerja
 - **Pelanggan** - Melakukan pemesanan secara online
 
 ## 📞 Kontak & Support
