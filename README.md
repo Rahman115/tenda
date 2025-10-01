@@ -42,7 +42,7 @@ Dengan sistem informasi yang terintegrasi, pengelolaan penyewaan dilakukan lebih
    mysql -u username -p database_name < database.sql
    ```
 4. **Konfigurasi environment**
-   · Sesuaikan setting database dan konfigurasi lainnya
+- Sesuaikan setting database dan konfigurasi lainnya
 5. **Jalankan aplikasi**
    ```bash
    php -S 127.0.0.1:8080
@@ -53,11 +53,11 @@ Dengan sistem informasi yang terintegrasi, pengelolaan penyewaan dilakukan lebih
 
 ### Tabel Utama
 
-· **users** - Data pengguna sistem
-· customers - Data pelanggan
-· tents - Data inventory tenda
-· rentals - Data transaksi penyewaan
-· payments - Data pembayaran
+- **users** - Data pengguna sistem
+- **customers** - Data pelanggan
+- **tents** - Data inventory tenda
+- **rentals** - Data transaksi penyewaan
+- **payments** - Data pembayaran
 
 
 ## 🔄 Sistem Query
@@ -92,17 +92,17 @@ GROUP BY MONTH(created_at);
 
 ## 👥 Pengguna Sistem
 
-· **Admin** - Mengelola seluruh sistem dan laporan
-· **Operator** - Memproses pemesanan dan transaksi
-· **Pelanggan** - Melakukan pemesanan secara online
+- **Admin** - Mengelola seluruh sistem dan laporan
+- **Operator** - Memproses pemesanan dan transaksi
+- **Pelanggan** - Melakukan pemesanan secara online
 
 ## 📞 Kontak & Support
 
 Untuk pertanyaan dan dukungan teknis, silakan hubungi:
 
-· **Email**: -
-· **Telepon**: (+62) 
-· **Alamat**: Jl. Utama No. 10, Kabupaten Buton Utara
+- **Email**: -
+- **Telepon**: (+62) 
+- **Alamat**: Jl. Utama No. 10, Kabupaten Buton Utara
 
 ## 📄 Lisensi
 
@@ -114,4 +114,4 @@ Kami menyambut kontribusi dari komunitas. Silakan fork repository ini dan submit
 
 ---
 
-SI Tenda - Solusi Digital untuk Penyewaan Tenda Profesional 🏕️
+**SI Tenda** - Solusi Digital untuk Penyewaan Tenda Profesional 🏕️
