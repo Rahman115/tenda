@@ -208,9 +208,9 @@ class JobManager {
                 }</p>
                 <p><b>Tanggal:</b> ${job.tanggal}</p>
                 <p class="uuid-display"><b>UUID:</b> ${job.uuid}</p>
-                <button onclick="jobManager.selectJob('${job.uuid}', ${
-                  job.id
-                }, '${job.pengguna}')">Pilih</button>
+                <button onclick="jobManager.selectJob('${job.uuid}', '${
+                  job.pengguna
+                }')">Pilih</button>
                 <button class="btn-edit" onclick="jobManager.showEditJobModal('${
                   job.uuid
                 }')">Edit</button>
@@ -223,10 +223,11 @@ class JobManager {
       .join('')
   }
 
-  selectJob(jobUuid, jobId, pengguna) {
+  selectJob(jobUuid, pengguna) {
     this.selectedJobUuid = jobUuid
-    this.selectedJobId = jobId
-
+    // this.selectedJobId = jobId
+    console.log('JOB UUID :', jobUuid)
+    // console.log('JOB ID :', jobId)
     document.getElementById('detail').innerHTML = `
             <h2>Detail Pesanan - ${pengguna}</h2>
             <p><strong>UUID Pekerjaan:</strong></p>
@@ -319,7 +320,7 @@ class JobManager {
     }
     document.getElementById('uuid_kerjaan_display').textContent =
       this.selectedJobUuid
-    document.getElementById('id_kerjaan').value = this.selectedJobId
+    document.getElementById('id_kerjaan').value = this.selectedJobUuid
     this.showModal('addOrderModal')
   }
 
@@ -350,9 +351,25 @@ class JobManager {
   // ========== FORM HANDLERS ==========
   async handleAddOrder(e) {
     e.preventDefault()
-    await this.submitForm('php/order_save.php', new FormData(e.target))
-    this.closeModal('addOrderModal')
-    this.loadOrders(this.selectedJobUuid)
+    modalManager.setLoading('addOrderModal', true)
+
+    try {
+      const formData = new FormData(e.target)
+
+      // DEBUG: Log data yang akan dikirim
+      console.log('Selected Job UUID:', this.selectedJobUuid)
+      console.log('Selected Job ID:', this.selectedJobId)
+      console.log('Form Data:')
+      for (let [key, value] of formData.entries()) {
+        console.log(key + ': ' + value)
+      }
+
+      await this.submitForm('php/order_save.php', formData)
+      modalManager.close('addOrderModal')
+      this.loadOrders(this.selectedJobUuid)
+    } finally {
+      modalManager.setLoading('addOrderModal', false)
+    }
   }
 
   async handleEditOrder(e) {
@@ -431,9 +448,9 @@ class JobManager {
   // ========== DELETE OPERATIONS ==========
   async deleteOrder(orderUuid) {
     if (!confirm('Apakah Anda yakin ingin menghapus pesanan ini?')) return
-
+    console.log('dari order uuid :', orderUuid)
     try {
-      const response = await fetch(`delete_order.php?uuid=${orderUuid}`, {
+      const response = await fetch(`php/order_delete.php?uuid=${orderUuid}`, {
         method: 'DELETE'
       })
       const data = await response.json()
@@ -452,7 +469,7 @@ class JobManager {
 
   async deleteJob(jobUuid) {
     if (!confirm('Apakah Anda yakin ingin menghapus pekerjaan ini?')) return
-
+    console.log('del dr job uuid :', jobUuid)
     try {
       const response = await fetch(`php/job_delete.php?uuid=${jobUuid}`, {
         method: 'DELETE'
